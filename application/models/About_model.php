@@ -9,7 +9,7 @@ class About_model extends CI_Model {
     }
 
     public function get_team() {
-    $team = $this->db->get('team_view')->result_array();
+    $team = $this->db->get('rbteam_view')->result_array();
 //    $team = array(
 //        array('name' => 'Amanda Robinson', 'uri' => 'about/Amanda'),
 //        array('name' => 'Ronald Rieger', 'uri' => 'about/Ron'),
