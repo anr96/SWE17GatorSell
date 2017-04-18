@@ -36,7 +36,7 @@ $message = array('sender_name' => 'John Smith', 'receiver_name' => 'Jason', 'dat
                 
                 <div class="form-group">
                     <label for="reply">Reply:</label>
-                    <textarea class="form-control" rows="5" id="description" name = "reply"></textarea>
+                    <textarea class="form-control" rows="5" id="description" name = "reply" required = "true"></textarea>
                 </div>
 
             </div>
@@ -48,8 +48,8 @@ $message = array('sender_name' => 'John Smith', 'receiver_name' => 'Jason', 'dat
             <div class = "col-md-5"> </div>
             <div class = "col-md-2"> 
                 <a href="<?= site_url("ViewMessages"); ?>" class="btn btn-default btn-block" role="button">Back</a>
+                <button type="submit" class="btn btn-success btn-block">Reply</button>
 
-                <a href="<?= site_url(); ?>" button type="submit" class="btn btn-success btn-block"  role="button">Reply</a>
             </div>
             <div class = "col-md-5"> </div>
         </div>
