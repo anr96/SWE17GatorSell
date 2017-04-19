@@ -1,12 +1,13 @@
 
 <?php
-$categories = array(
-    array('id' => '0', 'category' => ''), //Should create error if selected
-    array('id' => '', 'category' => 'Furniture'),
-    array('id' => '', 'category' => 'Books'),
-    array('id' => '', 'category' => 'Video Games'),
-    array('id' => '', 'category' => 'Other'),
-);
+//$categories = array(
+//    array('id' => '0', 'category' => ''), //Should create error if selected
+//    array('id' => '', 'category' => 'Furniture'),
+//    array('id' => '', 'category' => 'Books'),
+//    array('id' => '', 'category' => 'Video Games'),
+//    array('id' => '', 'category' => 'Other'),
+//);
+$categories = get_categories();
 
 $locations = array(
     array('id' => '0', 'location' => "--- Select One ---", 'latitude' => '', 'longitude' => ''),
@@ -16,12 +17,17 @@ $locations = array(
 );
 ?>
 <div class = "container-fluid">
-            <form method="post" id="AddNewPost" action ="<?= site_url("Confirmation");?>"> 
+    <form method="post" id="AddNewPost" action ="<?= site_url("Confirmation"); ?>"> 
 
-    <div class = "row">
-
-        <div class = "col-md-6">
-            <h2>Add New Post:</h2>
+    
+        <div class = "row">
+            <center><h1> Sell Item </h></center>
+        </div>
+        
+        <div class = "row">
+            <div class = "col-md-1"></div>
+            <div class = "col-md-5">
+                <h2>Add New Post:</h2>
 
                 <div class="form-group">
                     <label for="name">Name:</label>
@@ -71,66 +77,68 @@ $locations = array(
 
 
 
+            </div>
+
+            <div class = "col-md-5">
+
+                <h2>Safe Meeting: </h2> Pick a place thats safe to meet on SFSU campus
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <select class="form-control" id="locations" name = "location">
+                        <?php
+                        foreach ($locations as $loc) {
+                            echo "<option>$loc[location]</option>";
+                        }
+                        ?>
+
+                    </select>
+                    <br>
+
+                    <div id="map"></div>
+
+                    <script>
+
+                        var map;
+
+                        function initMap() {
+                            var uluru = {lat: 37.722558, lng: -122.4780799};
+                            map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 17,
+                                center: uluru
+                            });
+                            marker = new google.maps.Marker({
+                                position: uluru,
+                                map: map
+                            });
+                        }
+
+                    </script>
+
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPPBuI9Ok7SqFArQX8RjzG4DP4jfLZABc&callback=initMap">
+                    </script>
+
+                </div>
+            </div>
+                        <div class = "col-md-1"></div>
+
+
+
         </div>
+        <div class = "row">
+            <div class = "col-md-5"> </div>
+            <div class = "col-md-1"> 
+                <a href="<?= site_url(); ?>" class="btn btn-danger btn-block" role="button">Cancel</a>
+            </div>
+            <div class = "col-md-1"> 
 
-        <div class = "col-md-6">
-
-            <h2>Safe Meeting: </h2>
-            <div class="form-group">
-                <label for="location">Location:</label>
-                <select class="form-control" id="locations" name = "location">
-                    <?php
-                    foreach ($locations as $loc) {
-                        echo "<option>$loc[location]</option>";
-                    }
-                    ?>
-
-                </select>
-                <br>
-
-                <div id="map"></div>
-
-                <script>
-
-                    var map;
-
-                    function initMap() {
-                        var uluru = {lat: 37.722558, lng: -122.4780799};
-                        map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 17,
-                            center: uluru
-                        });
-                        marker = new google.maps.Marker({
-                            position: uluru,
-                            map: map
-                        });
-                    }
-
-                </script>
-
-                <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPPBuI9Ok7SqFArQX8RjzG4DP4jfLZABc&callback=initMap">
-                </script>
+                <button type="submit" class="btn btn-success btn-block">Add</button>
 
             </div>
-        </div>
-                  
 
-    </div>
-    <div class = "row">
-        <div class = "col-md-5"> </div>
-        <div class = "col-md-1"> 
-            <a href="<?= site_url(); ?>" class="btn btn-danger btn-block" role="button">Cancel</a>
+            <div class = "col-md-5"> </div>
         </div>
-        <div class = "col-md-1"> 
-
-            <button type="submit" class="btn btn-success btn-block">Add</button>
-
-        </div>
-        
-        <div class = "col-md-5"> </div>
-    </div>
-                 </form> 
+    </form> 
 </div>
 
 
