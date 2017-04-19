@@ -1,7 +1,7 @@
 <?php
-    $user = "Samuel";
-    $email = "sjackson@gmail.com";
-    $phone = "(555) 555-5555"
+    $item = array('name' => 'Harry Potter The Tales of Beedle the Bard', 'description' => 'lorem ipsum', 
+        'category_id' => 'Book', 'price' => '4.99', 'safe_meeting'=>'Cafe Rosso');
+    $registered_user = array('name' => 'Samuel', 'email' =>'sjackson@gmail.com','phone'=>'(678) 999-8212');
 ?>
 
 <div class="container-fluid">
@@ -14,19 +14,22 @@
         <div class ="col-md-8 ">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3>Welcome Back, <?php echo $user?></h3>
+                    <?php echo "<h3>Welcome Back,  $registered_user[name]</h3>";?>
                 </div>
+                
                 <div class="panel-body">
-                    <div class="col-sm-8">
-                        <label>Email: </label><p><?php echo $email?></p>
-                        <label>Phone Number: </label><p><?php echo $phone?></p>
+                    <div class="col-sm-9">
+                        <?php echo "<label>Email:</label> $registered_user[email]"; ?>
+                        <p></p>
+                        <?php echo "<label>Phone Number:</label> $registered_user[phone]";?>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <h5><a href="<?=  site_url('ViewMessages')?>">View All Messages</a></h5>
                         <h5><a href="<?=  site_url('forgotPwd')?>">Forgot Password?</a></h5>
                     </div>
-                    <p></p>  
+                    <p></p> 
                 </div>
+                
             </div>
         </div>
         <div class="col-md-2"></div>
@@ -39,25 +42,52 @@
                 <div class="panel-heading">
                     <h3>Current Items Posted</h3>
                 </div>
+                
                 <div class="panel-body">
-                    <div class="col-sm-4">
-                        <?php
-                            $path = site_url("dbimg/19");
-                            echo "<a href=''><img src='$path' class='img-responsive'></a>";
-                        ?>
+                    <div class="row">
+                       <div class="col-md-1"></div>
+                       <div class="col-md-3">
+                                <img src="<?= site_url('thumbnail/32'); ?>" class="img-responsive">
+                                <?php
+                                    echo "";
+                                    $path = site_url("thubmnail/32");
+                                 ?>
+                            </div>
+                        <div class="col-md-6">
+                                <?php
+                                    echo "<p><strong>Item: </strong>$item[name]</p>";
+                                    echo "<p><strong>Price: $</strong>$item[price]</p>";
+                                    echo "<p><strong>Category: </strong>$item[category_id]</p>";
+                                    echo "<p><strong>Safe Meeting: </strong>$item[safe_meeting]</p>";
+                                ?>
+                            </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-default" type="button" onclick="">Delete</button>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <?php
-                            $path = site_url("dbimg/22");
-                            echo "<a href=''><img src='$path' class='img-responsive'></a>";
-                        ?>
+                    <p></p>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                                <img src="<?= site_url('thumbnail/32'); ?>" class="img-responsive">
+                                <?php
+                                    echo "";
+                                    $path = site_url("thubmnail/32");
+                                 ?>
+                            </div>
+                            <div class="col-md-6">
+                                <?php
+                                    echo "<p><strong>Item: </strong>$item[name]</p>";
+                                    echo "<p><strong>Price: $</strong>$item[price]</p>";
+                                    echo "<p><strong>Category: </strong>$item[category_id]</p>";
+                                    echo "<p><strong>Safe Meeting: </strong>$item[safe_meeting]</p>";
+                                ?>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-default" type="button" onclick="">Delete</button>
+                            </div>
                     </div>
-                    <div class="col-sm-4">
-                        <?php
-                            $path = site_url("dbimg/27");
-                            echo "<a href=''><img src='$path' class='img-responsive'></a>";
-                        ?>
-                    </div>
+                    
                     <p></p>  
                 </div>
             </div>
