@@ -5,8 +5,7 @@ $locations = array('location' => 'Quad');
 ?>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
-        </div>
+        <div class="col-md-2"></div>
         <div class="col-md-2">
             <img src="<?= site_url('thumbnail/32'); ?>" class="img-responsive">
             <?php
@@ -14,28 +13,28 @@ $locations = array('location' => 'Quad');
             $path = site_url("thumbnail/32");
             ?>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <?php
             echo "<h4><strong>Item: </strong>$item[name]</h4>";
             echo "<h4><strong>Price: $</strong>$item[price]</h4>";
             echo "<h4><strong>Catageory: </strong>$item[category_id]</h4>";
+            echo "<h4><strong>Safe Meeting Location: </strong>$locations[location]</h4>";
             ?>
         </div>
-        <div class =" col-md-4">
-            <?php
-            echo "<h6>Safe Meeting Location: $locations[location]</h6>";
-            ?>
-            
-            <div id="map"></div>
+        <div class =" col-md-3">
+         
+<!--            <div id="map"></div>
             <script>
                 initMap();
             </script>
 
             <script async defer
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPPBuI9Ok7SqFArQX8RjzG4DP4jfLZABc&callback=initMap">
-            </script>
+            </script>-->
 
         </div>
+                <div class="col-md-2"></div>
+
     </div>
     <form method="post" id="ViewMessage" action ="<?= site_url("Confirmation"); ?>">
 
@@ -44,8 +43,8 @@ $locations = array('location' => 'Quad');
             <div class ="col-md-8">
                 <div class="center-block">
                     <?php
-                    echo "<h3>From: $message[sender_name] @ $message[date_sent]</h3>";
-                    echo "<pre>$message[message]</pre>";
+                    echo "<h3>From:" .htmlentities($message["sender_name"]) . "@ $message[date_sent]</h3>";
+                    echo "<pre>" . htmlentities($message["message"]) . "</pre>";
                     ?>
                 </div>
 
