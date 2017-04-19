@@ -17,14 +17,14 @@
               <td>3/14/17</td>
               <td>Box of Cigarettes</td>
               <td>Mike Smith</td>
-              <td><a href="<?= site_url('ViewMessage')?>" class="btn bg-primary">View Message</a></td>
+              <td><a href="<?= site_url('ViewMessage')?>" class="btn bg-primary">View Message and Reply</a></td>
             </tr>
             <tr>
               <td><input type="checkbox" value=""></td>
               <td>3/15/17</td>
               <td>Bowling Ball</td>
               <td>Sally King</td>
-              <td><a href="<?= site_url('ViewMessage')?>" class="btn bg-primary">View Message</a></td>
+              <td><a href="<?= site_url('ViewMessage')?>" class="btn bg-primary">View Message and Reply</a></td>
             </tr>
           </tbody>
         </table>
