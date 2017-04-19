@@ -27,7 +27,7 @@ $locations = array(
         <div class = "row">
             <div class = "col-md-1"></div>
             <div class = "col-md-5">
-                <h2>Add New Post:</h2>
+                <h3>Add New Post:</h3>
 
                 <div class="form-group">
                     <label for="name">Name:</label>
@@ -69,7 +69,7 @@ $locations = array(
                     </div>
 
                     <div class="form-group">
-                        <label for="photo">Photo:</label>
+                        <label for="photo">Upload 1 Photo:</label>
                         <input type="file" class="form-control-file" id="photo"  name = "photo" aria-describedby="fileHelp">
                         <small id="fileHelp" class="form-text ">File size must be under 4MB.</small>
                     </div>
@@ -81,7 +81,7 @@ $locations = array(
 
             <div class = "col-md-5">
 
-                <h2>Safe Meeting: </h2> Pick a place thats safe to meet on SFSU campus
+                <h3>Safe Meeting:<small>Pick a safe place to meet on SFSU campus.</small> </h3> 
                 <div class="form-group">
                     <label for="location">Location:</label>
                     <select class="form-control" id="locations" name = "location">
