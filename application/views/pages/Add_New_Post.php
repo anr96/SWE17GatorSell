@@ -19,11 +19,11 @@ $locations = array(
 <div class = "container-fluid">
     <form method="post" id="AddNewPost" action ="<?= site_url("postconfirmation"); ?>"> 
 
-    
+
         <div class = "row">
             <center><h1> Sell Item </h></center>
         </div>
-        
+
         <div class = "row">
             <div class = "col-md-1"></div>
             <div class = "col-md-5">
@@ -42,10 +42,18 @@ $locations = array(
 
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <div class="required-field-block">
-                        <input type="price" class="form-control" id="price" name ="price" placeholder="$"> Make smaller size fields
-                        <div class="required-icon">
-                            <div class="text">*</div>
+                    <div class = "row">
+                        <div class ="col-md-5">
+                            <div class="required-field-block">
+
+
+
+                                <input type="price" class="form-control" id="price" name ="price" placeholder="$">
+                                <div class="required-icon">
+                                    <div class="text">*</div>
+                                </div>
+                            </div>
+                            <div class ="col-md-7"></div>
                         </div>
                     </div>
                 </div>
@@ -120,9 +128,7 @@ $locations = array(
 
                 </div>
             </div>
-                        <div class = "col-md-1"></div>
-
-
+            <div class = "col-md-1"></div>
 
         </div>
         <div class = "row">
