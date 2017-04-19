@@ -17,7 +17,7 @@ $locations = array(
 );
 ?>
 <div class = "container-fluid">
-    <form method="post" id="AddNewPost" action ="<?= site_url("Confirmation"); ?>"> 
+    <form method="post" id="AddNewPost" action ="<?= site_url("postconfirmation"); ?>"> 
 
     
         <div class = "row">
@@ -43,7 +43,7 @@ $locations = array(
                 <div class="form-group">
                     <label for="price">Price:</label>
                     <div class="required-field-block">
-                        <input type="price" class="form-control" id="price" name ="price" placeholder="$">
+                        <input type="price" class="form-control" id="price" name ="price" placeholder="$"> Make smaller size fields
                         <div class="required-icon">
                             <div class="text">*</div>
                         </div>
