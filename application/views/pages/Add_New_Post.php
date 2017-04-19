@@ -40,18 +40,31 @@ $locations = array(
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="price">Price:</label>
-                    <div class = "row">
-                        <div class ="col-md-5">
+
+                <div class = "row">
+                    <div class ="col-md-5">
+                        <div class="form-group">
+                            <label for="price">Price:</label>
                             <div class="required-field-block">
-
-
 
                                 <input type="price" class="form-control" id="price" name ="price" placeholder="$">
                                 <div class="required-icon">
                                     <div class="text">*</div>
                                 </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="category">Category:</label>
+
+                                <select class="form-control" id="category">
+
+                                    <?php
+                                    foreach ($categories as $cat) {
+                                        echo "<option>$cat[category]</option>";
+                                    }
+                                    ?>
+
+                                </select>
                             </div>
                             <div class ="col-md-7"></div>
                         </div>
@@ -59,34 +72,19 @@ $locations = array(
                 </div>
 
                 <div class="form-group">
-                    <label for="category">Category:</label>
-
-                    <select class="form-control" id="category">
-
-                        <?php
-                        foreach ($categories as $cat) {
-                            echo "<option>$cat[category]</option>";
-                        }
-                        ?>
-
-                    </select>
-
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <textarea class="form-control" rows="5" id="description" name = "description"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="photo">Upload 1 Photo:</label>
-                        <input type="file" class="form-control-file" id="photo"  name = "photo" aria-describedby="fileHelp">
-                        <small id="fileHelp" class="form-text ">File size must be under 4MB.</small>
-                    </div>
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" rows="5" id="description" name = "description"></textarea>
                 </div>
 
-
+                <div class="form-group">
+                    <label for="photo">Upload 1 Photo:</label>
+                    <input type="file" class="form-control-file" id="photo"  name = "photo" aria-describedby="fileHelp">
+                    <small id="fileHelp" class="form-text ">File size must be under 4MB.</small>
+                </div>
 
             </div>
 
+            
             <div class = "col-md-5">
 
                 <h3>Safe Meeting:<small>Pick a safe place to meet on SFSU campus.</small> </h3> 
