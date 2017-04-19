@@ -1,6 +1,8 @@
 <?php
-$seller = "Morty Smith";
-$description = "Harry Potter The Tales of Beedle the Bard";
+$item = array('name' => 'Harry Potter The Tales of Beedle the Bard', 'description' => 'Descritipiont asdfsadf', 'category_id' => 'Book', 'price' => '4.99');
+$message = array('sender_name' => 'John Smith', 'receiver_name' => 'Morty Smith', 'date_sent' => '2017-04-17 22:58:33', 'message' => "hello, i wanted to see if you can meet me at Quad.", 'location_id' => "Quad");
+$locations = array('location' => 'Quad');
+
 ?>
 
 <div class="container-fluid"> 
@@ -14,17 +16,34 @@ $description = "Harry Potter The Tales of Beedle the Bard";
                 </div>
                 <div class="panel-body">
                     <div class="col-md-1"></div>
-                    <div class="col-sm-10">
+                    <div class="col-md-10">
                         <div class="row">
                             <p>Message the seller about purchasing the item or about questions pertaining to the product</p> 
                         </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="<?= site_url('thumbnail/32'); ?>" class="img-responsive">
+                                <?php
+                                    echo "";
+                                    $path = site_url("thumbnail/32");
+                                 ?>
+                            </div>
+                            <div class="col-md-9">
+                                <?php
+                                    echo "<h4><strong>To: </strong>$message[receiver_name]</h4>";
+                                    echo "<h4><strong>Item: </strong>$item[name]</h4>";
+                                    echo "<h4><strong>Price: $</strong>$item[price]</h4>";
+                                    echo "<h4><strong>Safe Meeting Location: </strong>$locations[location]</h4>";
+                                ?>
+                            </div>
+                        </div>
                         <div class="row ">
                             <form class="form-horizontal" action='<?= site_url('confirmation'); ?>' method="POST">
-                                <div class="row">
+                                <!--<div class="row">
                                     <label for="to">TO</label>                  
                                     <div class="panel panel-default panel-body">
                                         <?php
-                                        echo $seller;
+                                        echo "<p>$message[receiver_name]</p>";
                                         ?>  
                                     </div>
                                 </div>
@@ -33,17 +52,19 @@ $description = "Harry Potter The Tales of Beedle the Bard";
                                     <label for="item_description">ITEM</label>
                                     <div class="panel panel-default panel-body">
                                         <?php
-                                        echo $description;
+                                        echo "<p>$item[name]</p>";
                                         ?>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="row">
-                                    <label for="message">MESSAGE</label>
-                                    <textarea class="form-control" rows="6" id="message"></textarea>
+                                    <h4><strong>Message: </strong></h4>
+                                    <textarea class="form-control" rows="6" id="message" required="true"></textarea>
                                     <p></p>
+                                    
+                                    
                                     <div class="text-right">
-                                        <button class="btn btn-danger" onclick="window.history.back();">Cancel</button>
+                                        <button class="btn btn-danger" type="button" onclick="window.history.back();">Cancel</button>
                                         <button class="btn btn-success" type="submit">Send Message</button>
                                     </div>
                                 </div>
