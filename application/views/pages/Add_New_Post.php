@@ -16,12 +16,12 @@ $locations = array(
 );
 ?>
 <div class = "container-fluid">
+            <form method="post" id="AddNewPost" action ="<?= site_url("Confirmation");?>"> 
 
     <div class = "row">
 
         <div class = "col-md-6">
             <h2>Add New Post:</h2>
-            <form>
 
                 <div class="form-group">
                     <label for="name">Name:</label>
@@ -86,7 +86,6 @@ $locations = array(
                     ?>
 
                 </select>
-                </form>
                 <br>
 
                 <div id="map"></div>
@@ -115,6 +114,8 @@ $locations = array(
 
             </div>
         </div>
+                  
+
     </div>
     <div class = "row">
         <div class = "col-md-5"> </div>
@@ -126,7 +127,10 @@ $locations = array(
             <button type="submit" class="btn btn-success btn-block">Add</button>
 
         </div>
+        
         <div class = "col-md-5"> </div>
     </div>
+                 </form> 
 </div>
+
 
