@@ -4,6 +4,10 @@ $message = array('sender_name' => 'John Smith', 'receiver_name' => 'Jason', 'dat
 $locations = array('location' => 'Quad');
 ?>
 <div class="container-fluid">
+    <div class = "row">
+            <center><h1> View Message </h></center>
+        </div>
+    
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-2">
