@@ -13,9 +13,9 @@
                     <input type="code" class="form-control" id="email" placeholder="confimation code">
                 </div>
                 <div class ="text-right">
-                    <a href="<?= site_url('Login'); ?>"<button type="cancel" class="btn btn-danger">Cancel</button> </a>
+                    <a href="cancel_destination; ?>"<button type="cancel" class="btn btn-danger">Cancel</button> </a>
 
-                    <a href="<?= site_url('home'); ?>"<button type="submit" class="btn btn-success">Submit</button> </a>
+                    <a href="continue_destination; ?>"<button type="submit" class="btn btn-success">Submit</button> </a>
                 </div>
             </form>
         
