@@ -17,8 +17,7 @@ $locations = array(
 );
 ?>
 <div class = "container-fluid">
-    <form method="post" id="AddNewPost" action ="<?= site_url("postconfirmation"); ?>"> 
-
+    <form method="post" id="AddNewPost" action ="<?=$_SESSION['continue_destination']?>"> 
 
         <div class = "row">
             <center><h1> Sell Item </h></center>
