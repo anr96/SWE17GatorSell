@@ -132,7 +132,7 @@ $locations = array(
         <div class = "row">
             <div class = "col-md-5"> </div>
             <div class = "col-md-1"> 
-                <a href="<?= site_url(); ?>" class="btn btn-danger btn-block" role="button">Cancel</a>
+                <a href="<?=  $_SESSION['cancel_destination'] ?>" class="btn btn-danger btn-block" role="button">Cancel</a>
             </div>
             <div class = "col-md-1"> 
 
