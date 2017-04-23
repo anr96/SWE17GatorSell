@@ -1,10 +1,10 @@
 
 <?php
     $item = array(
-        "name" => "Camera",
+        "name" => "Harry Potter",
         "photo" => 32,
-        "description" => "This is a camera!",
-        "price" => 12.95
+        "description" => "This is a book!",
+        "price" => 5.99
     );
 ?>
 <div class="containter-fluid">
@@ -34,7 +34,7 @@
     </div>
 
     <div class="text-right">
-        <button type="button" class="btn btn-outline-primary">Click here to edit</button>
+        <a href="cancel_destination; ?>"<button type="continue" class="btn btn-default">Click here to edit</button> </a>
     </div>
 </div>
 

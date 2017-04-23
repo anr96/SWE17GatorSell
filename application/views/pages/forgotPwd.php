@@ -11,7 +11,7 @@
                 <input type="email" class="form-control" id="email" placeholder="Enter email">
             </div>
             <div class ="text-right">
-                    <a href="<?= site_url('Login'); ?>"<button type="cancel" class="btn btn-danger">Cancel</button> </a>
+                    <a href="cancel_destination; ?>"<button type="cancel" class="btn btn-danger">Cancel</button> </a>
 
                     <a href="<?= site_url('forgotpwd_confirmation'); ?>"<button type="submit" class="btn btn-success">Submit</button> </a>
             </div>
