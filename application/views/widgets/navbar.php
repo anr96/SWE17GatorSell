@@ -16,10 +16,10 @@ $numMessages = 3;
             </a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-left">
                 <li><a href="<?= site_url('Add_New_Post'); ?>">Sell</a></li>
             </ul>
-            <ul>
+            <ul class="nav navbar-nav" >
                 <?php $this->load->view('widgets/navbarSearch',array('selected'=>$selected));?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
