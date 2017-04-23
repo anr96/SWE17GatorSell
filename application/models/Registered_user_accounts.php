@@ -6,26 +6,31 @@ class Registered_user_accounts extends CI_Model {
         parent::__construct();
         $this->load->database();
     }
-    public function validate_email_and_password($email,$password) {
+
+    public function validate_email_and_password($email, $password) {
         $result = $this->db->where(array('email' => $email, 'password' => md5($password)))
                 ->get('registered_user_accounts')
                 ->row_array();
         return $result;
     }
 
-    public function add_account($name, $screen_name, $password, $email, $phone) {
-       
+    public function email_already_exists($email) {
+        return $this->db->where('email', $email)
+                        ->count_all_results('registered_user_accounts');
+    }
+
+    public function add_account($account) {
+
         $data = array(
-            'name' => $name,
-            'screen_name' => $screen_name,
-            'email' => $email,
-            'phone' => $phone,
-            'password' => md5 ($password),
-            'agree_to_terms' => true,
+            'name' => $account['name'],
+            'email' => $account['email'],
+            'phone' => $account['phone'],
+            'password' => md5($account['password']),
+            'agree_to_terms' => $account['agree_to_terms'],
             'activated' => false,
             'banned' => false
         );
-        
+
         $this->db->insert('registered_user_accounts', $data);
     }
 
