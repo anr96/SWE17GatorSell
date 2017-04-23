@@ -40,14 +40,14 @@ $locations = array('location' => 'Quad');
                 <div class="col-md-2"></div>
 
     </div>
-    <form method="post" id="ViewMessage" action ="<?= site_url("Confirmation"); ?>">
+    <form method="post" id="ViewMessage" action ="<?=$_SESSION['continue_destination'] ?>">
 
         <div class = "row">
             <div class ="col-md-2"></div>
             <div class ="col-md-8">
                 <div class="center-block">
                     <?php
-                    echo "<h3>From:" .htmlentities($message["sender_name"]) . "@ $message[date_sent]</h3>";
+                    echo "<h3>From:" .htmlentities($message["sender_name"]) . "@ " .htmlentities($message['date_sent']) . "</h3>";
                     echo "<pre>" . htmlentities($message["message"]) . "</pre>";
                     ?>
                 </div>

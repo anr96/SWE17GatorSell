@@ -17,8 +17,7 @@ $locations = array(
 );
 ?>
 <div class = "container-fluid">
-    <form method="post" id="AddNewPost" action ="<?= site_url("postconfirmation"); ?>"> 
-
+    <form method="post" id="AddNewPost" action ="<?=$_SESSION['continue_destination']?>"> 
 
         <div class = "row">
             <center><h1> Sell Item </h></center>
@@ -132,7 +131,7 @@ $locations = array(
         <div class = "row">
             <div class = "col-md-5"> </div>
             <div class = "col-md-1"> 
-                <a href="<?= site_url(); ?>" class="btn btn-danger btn-block" role="button">Cancel</a>
+                <a href="<?=  $_SESSION['cancel_destination'] ?>" class="btn btn-danger btn-block" role="button">Cancel</a>
             </div>
             <div class = "col-md-1"> 
 

@@ -1,7 +1,9 @@
 <?php
     $item = array('name' => 'Harry Potter The Tales of Beedle the Bard', 'description' => 'lorem ipsum', 
-        'category_id' => 'Book', 'price' => '4.99', 'safe_meeting'=>'Cafe Rosso');
-    $registered_user = array('name' => 'Samuel', 'email' =>'sjackson@gmail.com','phone'=>'(678) 999-8212');
+        'category_name' => 'Book', 'price' => '4.99', 'safe_meeting'=>'Cafe Rosso', 'list_date' => '04/19/2017');
+    $registered_user = array('name' => ($_SESSION['registered_user']['name'] = 'Samuel'), 
+        'email' => ($_SESSION['registered_user']['email'] = 'sjackson@gmail.com'),
+        'phone'=> ($_SESSION['registered_user']['phone'] = '(678) 999-8212'));
 ?>
 
 <div class="container-fluid">
@@ -57,7 +59,7 @@
                                 <?php
                                     echo "<p><strong>Item: </strong>$item[name]</p>";
                                     echo "<p><strong>Price: $</strong>$item[price]</p>";
-                                    echo "<p><strong>Category: </strong>$item[category_id]</p>";
+                                    echo "<p><strong>Category: </strong>$item[category_name]</p>";
                                     echo "<p><strong>Safe Meeting: </strong>$item[safe_meeting]</p>";
                                 ?>
                             </div>
@@ -79,7 +81,7 @@
                                 <?php
                                     echo "<p><strong>Item: </strong>$item[name]</p>";
                                     echo "<p><strong>Price: $</strong>$item[price]</p>";
-                                    echo "<p><strong>Category: </strong>$item[category_id]</p>";
+                                    echo "<p><strong>Category: </strong>$item[category_name]</p>";
                                     echo "<p><strong>Safe Meeting: </strong>$item[safe_meeting]</p>";
                                 ?>
                             </div>

@@ -5,5 +5,11 @@
         <p>Further instructions are sent to your email to reset password.</p>
         <p1>Check your email shortly...</p1>
     </div>
+    
+    
+    <div class ="text-right">
+        <a href="continue_destination; ?>"<button type="continue" class="btn btn-danger">Cancel</button> </a>
+                   
+    </div>
 </div>
 
