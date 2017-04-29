@@ -6,19 +6,18 @@
     </div>
     <div class="col-md-3"></div>
     <div class="col-md-6 text-center"><br>
-        
-            <form>
-                <div class="form-group">
-                    <label for="code">Enter your confirmation code:</label>
-                    <input type="code" class="form-control" id="email" placeholder="confimation code">
-                </div>
-                <div class ="text-right">
-                    <a href="cancel_destination; ?>"<button type="cancel" class="btn btn-danger">Cancel</button> </a>
+        <?=validation_errors()?>
+        <form method="post" action="<?= site_url('register/activate')?>">
+            <div class="form-group">
+                <label for="code">Enter your confirmation code:</label>
+                <input type="text" class="form-control" id="code" name="code" placeholder="confimation code">
+            </div>
+            <div class ="text-right">
+                <a href="<?= $_SESSION['cancel_destination'] ?>" class="btn btn-danger">Cancel</a>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
 
-                    <a href="continue_destination; ?>"<button type="submit" class="btn btn-success">Submit</button> </a>
-                </div>
-            </form>
-        
     </div>
     <div class="col-md-3"></div>   
 </div>

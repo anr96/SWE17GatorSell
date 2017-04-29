@@ -7,16 +7,14 @@
             <?="<p class='results-count-text'>Viewing Items $start - $end of $total results.</p>";?>
         </div> 
         <div class="col-md-4">
-             <?php //gs_pagination($total,"items/$categoryID",$_SERVER['QUERY_STRING'],$page);?>
+             <?php gs_pagination($total,"items",$page);?>
         </div> 
     </div>
-
     <?php
-
     foreach ($items as $item) {
         $this->load->view('widgets/itembox', array('item' => $item));
     }
-    //gs_pagination($total,"items/$categoryID",$_SERVER['QUERY_STRING'],$page);
+    gs_pagination($total,"items",$page);
     ?>
     
 </div>

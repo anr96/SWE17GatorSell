@@ -1,14 +1,4 @@
-
 <?php
-//$categories = array(
-//    array('id' => '0', 'category' => ''), //Should create error if selected
-//    array('id' => '', 'category' => 'Furniture'),
-//    array('id' => '', 'category' => 'Books'),
-//    array('id' => '', 'category' => 'Video Games'),
-//    array('id' => '', 'category' => 'Other'),
-//);
-$categories = get_categories();
-
 $locations = array(
     array('id' => '0', 'location' => "--- Select One ---", 'latitude' => '', 'longitude' => ''),
     array('id' => '1', 'location' => "Cesar Chavez", 'latitude' => '37.7058856', 'longitude' => '-122.4849352'),
@@ -17,88 +7,63 @@ $locations = array(
 );
 ?>
 <div class = "container-fluid">
-    <form method="post" id="AddNewPost" action ="<?=$_SESSION['continue_destination']?>"> 
-
+    <form method="post" id="AddNewPost" action ="<?= site_url('items/new_item') ?>"> 
         <div class = "row">
             <center><h1> Sell Item </h></center>
         </div>
-
+        <?php echo validation_errors(); ?>
         <div class = "row">
             <div class = "col-md-1"></div>
             <div class = "col-md-5">
                 <h3>Add New Post:</h3>
-
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <div class="required-field-block">
-                        <input type="name" class="form-control" id="name" name ="name" placeholder="Title" required="true">
-
+                        <input type="name" class="form-control" id="name" name ="name" placeholder="Title" required="true" value="<?= set_value('name');?>">
                         <div class="required-icon">
                             <div class="text">*</div>
                         </div>
                     </div>
                 </div>
-
-
                 <div class = "row">
                     <div class ="col-md-5">
                         <div class="form-group">
                             <label for="price">Price:</label>
                             <div class="required-field-block">
-
-                                <input type="price" class="form-control" id="price" name ="price" placeholder="$">
+                                <input type="price" class="form-control" id="price" name ="price" placeholder="$" value="<?=set_value('price');?>">
                                 <div class="required-icon">
                                     <div class="text">*</div>
                                 </div>
                             </div>
                             <br>
                             <div class="form-group">
-                                <label for="category">Category:</label>
-
-                                <select class="form-control" id="category">
-
-                                    <?php
-                                    foreach ($categories as $cat) {
-                                        echo "<option>$cat[category]</option>";
-                                    }
-                                    ?>
-
-                                </select>
+                                <label for="categorys">Category:</label>
+                                <?php
+                                categories_select('Choose a Category', "class='form-control' id = 'categorys' name = 'category_id'", set_value('category_id'));
+                                ?>
                             </div>
                             <div class ="col-md-7"></div>
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea class="form-control" rows="5" id="description" name = "description"></textarea>
+                    <textarea class="form-control" rows="5" id="description" name = "description"><?=set_value('description');?></textarea>
                 </div>
-
                 <div class="form-group">
                     <label for="photo">Upload 1 Photo:</label>
-                    <input type="file" class="form-control-file" id="photo"  name = "photo" aria-describedby="fileHelp">
-                    <small id="fileHelp" class="form-text ">File size must be under 4MB.</small>
+                    <input type="file" class="form-control-file" id="photo"  name = "photo">
+                    <small id="fileHelp" class="form-text ">File size must be under 2MB.</small>
                 </div>
-
             </div>
-
-            
             <div class = "col-md-5">
-
                 <h3>Safe Meeting:<small>Pick a safe place to meet on SFSU campus.</small> </h3> 
                 <div class="form-group">
-                    <label for="location">Location:</label>
-                    <select class="form-control" id="locations" name = "location">
-                        <?php
-                        foreach ($locations as $loc) {
-                            echo "<option>$loc[location]</option>";
-                        }
-                        ?>
-
-                    </select>
-                    <br>
-
+                    <label for="locations">Location:</label>
+                    <?php
+                    locations_select('Choose a location', "class='form-control' id = 'locations' name = 'location_id'", set_value('location_id'));
+                    ?>
+                    <br />
                     <div id="map"></div>
 
                     <script>
@@ -131,7 +96,7 @@ $locations = array(
         <div class = "row">
             <div class = "col-md-5"> </div>
             <div class = "col-md-1"> 
-                <a href="<?=  $_SESSION['cancel_destination'] ?>" class="btn btn-danger btn-block" role="button">Cancel</a>
+                <a href="<?php echo $_SESSION['cancel_destination'];  ?>" class="btn btn-danger btn-block" role="button">Cancel</a>
             </div>
             <div class = "col-md-1"> 
 

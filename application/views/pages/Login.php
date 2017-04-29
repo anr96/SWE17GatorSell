@@ -11,7 +11,9 @@
                     <div class="alert alert-danger text-center">
                         <strong>Invalid e-mail or password</strong>
                     </div>
-                    <?php }?>
+                    <?php }
+                    echo validation_errors();
+                    ?>
                     <form method="post" action="<?= site_url('login'); ?>">
                         <div class="form-group">
                             <div class="row">

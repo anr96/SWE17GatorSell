@@ -1,11 +1,13 @@
 
 <?php
+if(!isset($item)){
     $item = array(
         "name" => "Harry Potter",
         "photo" => 32,
         "description" => "This is a book!",
         "price" => 5.99
     );
+}
 ?>
 <div class="containter-fluid">
     <div class="text-center">

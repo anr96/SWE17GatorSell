@@ -13,6 +13,14 @@ class Registered_user_accounts extends CI_Model {
                 ->row_array();
         return $result;
     }
+    
+    public function get_account($id) {
+        return $this->db->get_where('registered_user_accounts',array('id' => $id))->row_array();
+    }
+
+    public function activate($id) {
+        $this->db->update('registered_user_accounts', array('activated' => true), array('id' => $id));
+    }
 
     public function email_already_exists($email) {
         return $this->db->where('email', $email)
@@ -32,6 +40,7 @@ class Registered_user_accounts extends CI_Model {
         );
 
         $this->db->insert('registered_user_accounts', $data);
+        return $this->db->insert_id();
     }
 
 }

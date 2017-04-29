@@ -24,8 +24,9 @@ class Items_model extends CI_Model {
 
     public function get_items($category_id = 0, $like = '', $page = -1, $how_many = 10) {
 
-        if ($category_id)
+        if ($category_id){
             $this->db->where(array('category_id' => $category_id));
+        }
         // if $page is -1, get everything.  Otherwise, limit the results
         $tok = strtok($like, ' ');
         while ($tok) {
@@ -36,8 +37,9 @@ class Items_model extends CI_Model {
             $tok = strtok(' ');
         }
 
-        if ($page != -1)
+        if ($page != -1) {
             $this->db->limit($how_many, $page * $how_many);
+        }
 
         return $this->db->get('items_briefdescription_view')->result();
     }
@@ -57,9 +59,12 @@ class Items_model extends CI_Model {
             'description' => $item['description'],
             'price' => $item['price'],
             'category_id' => $item['category_id'],
-            'photo' => $item['photo']
+            'photo' => $item['photo_id'],
+            'seller_id' => $item['seller_id'],
+            'location_id' => $item['location_id']
         );
         $this->db->insert('items', $data);
+        return $this->db->insert_id();
     }
 
     public function update_photo_id($item_id, $photo_id) {

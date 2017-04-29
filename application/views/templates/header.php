@@ -29,5 +29,5 @@ $this->load->helper('html');
                 <?php
                 if(!isset($selected)) $selected = 0;
                 $this->load->view('widgets/sfsu_notice');
-                $this->load->view('widgets/navbar',array('selected'=>$selected));
+                $this->load->view('widgets/navbar');
                 ?>

@@ -17,18 +17,18 @@ $numMessages = 3;
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="<?= site_url('Add_New_Post'); ?>">Sell</a></li>
+                <li><a href="<?= site_url('items/new_item'); ?>">Sell</a></li>
             </ul>
             <ul class="nav navbar-nav" >
-                <?php $this->load->view('widgets/navbarSearch',array('selected'=>$selected));?>
+                <?php $this->load->view('widgets/navbarSearch');?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <?php if(isset($_SESSION['account'])){?>
+                <?php if(logged_in()){?>
                     <li><a href="<?= site_url('SellerProfile'); ?>"><span class="glyphicon glyphicon-briefcase"></span> Account</a></li>
                     <li><a href="<?= site_url('ViewMessages'); ?>"><span class="glyphicon glyphicon-envelope"></span> Mail <span class="badge"><?=$numMessages;?></span></a></li>
-                    <li><a href="<?= site_url('logout'); ?>"><span class="glyphicon glyphicon-log-in"></span> Login out: <?= $_SESSION['account']['screen_name'];?> </a></li>
+                    <li><a href="<?= site_url('login/logout'); ?>"><span class="glyphicon glyphicon-log-in"></span> Logout: <?= $_SESSION['registered_user']['name'];?> </a></li>
                 <?php } else { ?>
-                    <li><a href="<?= site_url('Register'); ?>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="<?= site_url('register'); ?>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                     <li><a href="<?= site_url('login'); ?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 <?php } ?>
                
