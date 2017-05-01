@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 //Required Field
-$(function() {
+$(function () {
     $('.required-icon').tooltip({
         placement: 'left',
         title: 'Required field'
-        });
+    });
+});
+
+jQuery(function ($) {
+    $("#phone").mask("(999) 999-9999", {placeholder: " "});
 });
