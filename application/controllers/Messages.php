@@ -1,31 +1,60 @@
 <?php
 
-class Register extends CI_Controller {
+class Messages extends CI_Controller {
 
-    public function do_register() {
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('items_model');
+        $this->load->model('messages_model');
+    }
 
-        $this->load->model('registered_user_accounts');
-        $this->form_validation->set_rules('name', 'Name', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[registered_user_accounts.email]|regex[.*sfsu\.com]',
-                array(
-                    'is_unique' => "%s already exists.",
-                    'regex'  => "%s is not a valid SFSU email address"));
-        $this->form_validation->set_rules('phone', 'Phone', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required|min_length[7]');
-        $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
-        $this->form_validation->set_rules('agree_to_terms', 'Agree to terms', 'required|greater_than[0]');
+    public function index() {
+        must_be_logged_in();
         
+    }
+
+    public function view_message($message_id) {
+        must_be_logged_in();
+        $message = $this->message_model->get_message($message_id);
+        if($message['receiver_id'] != $_SESSION['registered_user']['id']){
+            show_404();
+        }
+        $this->form_validation->set_rules('reply', 'Reply', 'required|min_length[10]|max_length[9000]');
+
         if ($this->form_validation->run() == FALSE) {
-            gator_view('Sign up', 'pages/Register');
+            gator_view('View Message', 'pages/ViewMessage',array('message' => $message));
         } else {
-            $this->registered_user_accounts->add_account($_POST);
-            // set logged in state (not confirmed) and go to 
-            redirect('register/validate_account');
+            $data['message'] = $this->input->post('reply');
+            $data['sender_id'] = $_SESSION['registered_user']['id'] ;
+            $data['receiver_id'] = $message['sender_id'];
+            $data['item_id'] = $message['item_id'];
+            $message_id = $this->messages_model->add_message($data);
+            redirect("messages/message_sent/$message_id");
+        }        
+    }
+
+    public function message_seller($item_id = 0) {
+        must_be_logged_in();
+        $item = $this->items_model->get_item($item_id);
+        if(!isset($item)){
+            show_404();
+        }
+        $this->form_validation->set_rules('message', 'Message', 'required|min_length[10]|max_length[9000]');
+
+        if ($this->form_validation->run() == FALSE) {
+            gator_view('Message Seller', 'pages/MessageSeller',array('item' => $item));
+        } else {
+            $data['message'] = $this->input->post('message');
+            $data['sender_id'] = $_SESSION['registered_user']['id'] ;
+            $data['receiver_id'] = $item['seller_id'];
+            $data['item_id'] = $item['id'];
+            $message_id = $this->messages_model->add_message($data);
+            redirect("messages/message_sent/$message_id");
         }
     }
-    
-    public function validate_account() {
-        
-    }
 
+    public function message_sent($message_id){
+        $this->session->set_userdata('continue_destination', $_SESSION['cancel_destination']);
+        gator_view('Message Sent', 'pages/Confirmation');
+    }
 }

@@ -1,11 +1,10 @@
 <?php
-$item = array('name' => 'Harry Potter The Tales of Beedle the Bard', 
-    'description' => 'lorem ipsum', 'photo_id' => 32,
-    'category_name' => 'Book', 'price' => '4.99');
-$message = array('sender_name' => 'John Smith', 'receiver_name' => 'Morty Smith',
-    'date_sent' => '2017-04-17 22:58:33', 
-    'message' => "hello, i wanted to see if you can meet me at Quad.",
-    'location_name' => "Quad");
+if (!isset($item)) {
+    $item = array('id' => 20, 'name' => 'Harry Potter The Tales of Beedle the Bard',
+        'description' => 'lorem ipsum', 'photo_id' => 32,
+        'category_name' => 'Book', 'price' => '4.99',
+        'location_name' => "Quad",'seller_name' => 'Samuel L. Jackson');
+}
 $photo_path = site_url("thumbnail/$item[photo_id]");
 ?>
 
@@ -30,23 +29,23 @@ $photo_path = site_url("thumbnail/$item[photo_id]");
                             </div>
                             <div class="col-md-9">
                                 <?php
-                                    echo "<h4><strong>To: </strong>$message[receiver_name]</h4>";
-                                    echo "<h4><strong>Item: </strong>$item[name]</h4>";
-                                    echo "<h4><strong>Price: $</strong>$item[price]</h4>";
-                                    echo "<h4><strong>Safe Meeting Location: </strong>$message[location_name]</h4>";
+                                echo "<h4><strong>To: </strong>$item[seller_name]</h4>";
+                                echo "<h4><strong>Item: </strong>$item[name]</h4>";
+                                echo "<h4><strong>Price: $</strong>$item[price]</h4>";
+                                echo "<h4><strong>Safe Meeting Location: </strong>$item[location_name]</h4>";
                                 ?>
                             </div>
                         </div>
                         <div class="row ">
-                            <form class="form-horizontal" action='<?= site_url('confirmation'); ?>' method="POST">
+                            <form class="form-horizontal" action='<?= site_url("messages/message_seller/$item[id]"); ?>' method="POST">
                                 <div class="row">
                                     <h4><strong>Message: </strong></h4>
-                                    <textarea class="form-control" rows="6" id="message" required="true"></textarea>
+                                    <textarea class="form-control" rows="6" id="message" name="message" required="true"><?= set_value('message')?></textarea>
                                     <p></p>
-                                    
-                                    
+
+
                                     <div class="text-right">
-                                        <button class="btn btn-danger" type="button" onclick="window.history.back();">Cancel</button>
+                                        <a href="<?= $_SESSION['cancel_destination']?>" class="btn btn-danger" role="button">Cancel</a>
                                         <button class="btn btn-success" type="submit">Send Message</button>
                                     </div>
                                 </div>
