@@ -57,10 +57,8 @@ body {
 }
 .navbar-center
 {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    margin: auto;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 /* Required field START */
 
