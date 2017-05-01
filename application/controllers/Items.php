@@ -2,22 +2,20 @@
 
 class Items extends CI_Controller {
 
-    public function view($page = 0) {
+    public function view($page = 0, $sortby = 0) {
         can_be_any_logged_in_state();
         
         $this->load->model('items_model');
 
         $query = isset($_SESSION['query']) ? $_SESSION['query'] : '';
-        $data['items'] = $this->items_model->get_items($_SESSION['categoryID'],$query,$page);
+        $data['items'] = $this->items_model->get_items($_SESSION['categoryID'],$query,$page,$sortby);
         $data['total'] = $this->items_model->items_count($_SESSION['categoryID'],$query);
-//        $data['categoryID'] = $categoryID;
         $data['page'] = $page;
+        $data['sortby'] = $sortby;
         $data['start'] = $data['total'] == 0 ? 0 : $page * 10 + 1;
         $data['end'] = ($page + 1) * 10 > $data['total'] ? $data['total'] : ($page + 1) * 10;
         
-        $this->load->view('templates/header', array('title' => 'Items For Sale'));
-        $this->load->view('pages/items', $data);
-        $this->load->view('templates/footer');
+        gator_view('Items For Sale','pages/items',$data);
     }
 
     public function query(){
@@ -37,22 +35,14 @@ class Items extends CI_Controller {
         can_be_any_logged_in_state();
         // load the model and use its get_item function
         $this->load->model('items_model');
-        $this->load->model('categories_model');
         $data['item'] = $this->items_model->get_item($id);
 
         // was the $id valid?? if not show the "404 page not found" page and stop
         if (!isset($data['item'])) {
             show_404();
         }
-
-        $data['categories'] = $this->categories_model->get_categories();
-        $data['selected'] = 0;
-        $data['title'] = $data['item']->name;
-        
         // since $id was good, display the page
-        $this->load->view('templates/header', $data);
-        $this->load->view('prototype/item', $data);
-        $this->load->view('templates/footer');
+        gator_view($data['item']['name'], 'prototype/item',$data);
     }
     public function new_item(){
         must_be_logged_in();
@@ -71,7 +61,6 @@ class Items extends CI_Controller {
             $item['seller_id'] = 6;
             $id = $this->items_model->add_item($item);
             $item['id'] = $id;
-            // set logged in state (not confirmed) and go to 
             gator_view('Post Confirmation','pages/postconfirmation',array('item' => $item));
         }
     }

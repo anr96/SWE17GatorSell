@@ -22,8 +22,10 @@ class Items_model extends CI_Model {
         return $this->db->count_all_results('items');
     }
 
-    public function get_items($category_id = 0, $like = '', $page = -1, $how_many = 10) {
+    public function get_items($category_id = 0, $like = '', $page = 0, $sortby = 0, $how_many = 10) {
 
+        if($sortby < 0 || $sortby > 2) {$sortby = 0;}
+        $sort = array('id ASC','id DESC','price ASC');
         if ($category_id){
             $this->db->where(array('category_id' => $category_id));
         }
@@ -36,12 +38,11 @@ class Items_model extends CI_Model {
                     ->group_end();
             $tok = strtok(' ');
         }
+        $this->db->order_by($sort[$sortby]);
+        $this->db->limit($how_many, $page * $how_many);
 
-        if ($page != -1) {
-            $this->db->limit($how_many, $page * $how_many);
-        }
 
-        return $this->db->get('items_briefdescription_view')->result();
+        return $this->db->get('items_view')->result_array();
     }
 
 //    public function get_items($category_id,$page = -1) {
@@ -49,7 +50,7 @@ class Items_model extends CI_Model {
 //    }
 
     public function get_item($id) {
-        return $this->db->get_where('items', array('id' => $id))->first_row();
+        return $this->db->get_where('items_view', array('id' => $id))->row_array();
     }
 
     public function add_item($item) {
