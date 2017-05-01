@@ -109,21 +109,21 @@ if (!function_exists('locations_select')) {
 }
 
 if (!function_exists('gs_pagination')) {
-    function gs_pagination($total, $uri, $cur_page = 0, $items_per_page = 10) {
+    function gs_pagination($total, $uri, $cur_page = 0, $sortby = 0, $items_per_page = 10) {
         if($total==0){$total = 1;}
-        $num_pages = intdiv($total -1, $items_per_page) + 1;
-        $page_group = intdiv($cur_page, 5);
-        $num_groups = intdiv($num_pages - 1, 5) + 1;
-        $page = intdiv($cur_page, $items_per_page) * $items_per_page - 1;
-        $link_previous_group = site_url($uri) . "/$page" ;
-        $link_next_group = site_url($uri) . '/' . (intdiv($cur_page, $items_per_page)+1) * $items_per_page;
+        $num_pages = (int) floor(($total -1) / $items_per_page) + 1;
+        $page_group = (int) floor($cur_page / 5);
+        $num_groups = (int) floor(($num_pages - 1) / 5) + 1;
+        $page = (int) floor($cur_page / $items_per_page) * $items_per_page - 1;
+        $link_previous_group = site_url($uri) . "/$page/$sortby" ;
+        $link_next_group = site_url($uri) . '/' . ((int) floor($cur_page / $items_per_page)+1) * $items_per_page . "/$sortby";
         $head = $page_group == 0 ? '' : "<li><a href='$link_previous_group'>&laquo;</a></li>";
         $tail = $page_group == $num_groups -1 ? '' : "<li><a href='$link_next_group'>&raquo;</a></li>";
         $body = '';
         for($page_num = $page_group * 5;($page_num < ($page_group + 1)*5) && ($page_num < $num_pages);$page_num++){
             $active = $page_num == $cur_page ? 'class="active"' : '';
             $disp_page = $page_num + 1;
-            $link = site_url($uri) . "/$page_num";
+            $link = site_url($uri) . "/$page_num/$sortby";
             $body = $body . "<li $active><a href='$link'>$disp_page</a></li>";
         }
         
