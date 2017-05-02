@@ -1,7 +1,6 @@
 <?php
 if (!isset($currentPage))
     $currentPage = "";
-$_SESSION['message_count'];
 ?>
 
 <nav class="min-b-margin navbar-inverse">
