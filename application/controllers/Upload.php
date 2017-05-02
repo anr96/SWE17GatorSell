@@ -27,14 +27,19 @@ class Upload extends CI_Controller {
             
             $config['image_library'] = 'gd2';
             $config['source_image'] = $img['full_path'];
-            $config['create_thumb'] = TRUE;
+            $config['create_thumb'] = false;
             $config['maintain_ratio'] = TRUE;
+            echo $config['new_image'] = $img['full_path'] . ".jpg";
             $config['quality'] = 100;
-            $config['width'] = 1000;
-            $config['height'] = 1000;
+            $config['width'] = 100;
+            $config['height'] = 100;
 
             $this->load->library('image_lib',$config);
             $this->image_lib->resize();
+            $this->load->model('photos_model');
+            $this->photos_model->upload_photo(16,$img['full_path'],$img['full_path'] . ".jpg",$img['image_type']);
+            unlink($img['full_path']);
+            unlink($img['full_path'] . ".jpg");
             $this->load->view('upload_test/upload_success', $data);
         }
     }

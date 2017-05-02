@@ -3,7 +3,6 @@
         <title>Upload Form</title>
     </head>
     <body>
-        <?= phpinfo()?>
         <h3>Your file was successfully uploaded!</h3>
 
         <ul>
