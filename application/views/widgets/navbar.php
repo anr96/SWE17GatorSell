@@ -1,7 +1,7 @@
 <?php
 if (!isset($currentPage))
     $currentPage = "";
-$numMessages = $_SESSION['message_count'];
+$_SESSION['message_count'];
 ?>
 
 <nav class="min-b-margin navbar-inverse">
@@ -24,7 +24,7 @@ $numMessages = $_SESSION['message_count'];
                 <li><a href="<?= site_url('items/new_item'); ?>"><span class="glyphicon glyphicon-star"></span> Sell Something!</a></li>
                 <?php if (logged_in()) { ?>
                     <li><a href="<?= site_url('account'); ?>"><span class="glyphicon glyphicon-briefcase"></span> Account</a></li>
-                    <li><a href="<?= site_url('messages'); ?>"><span class="glyphicon glyphicon-envelope"></span> Messages <span class="badge"><?= $numMessages; ?></span></a></li>
+                    <li><a href="<?= site_url('messages'); ?>"><span class="glyphicon glyphicon-envelope"></span> Messages <span class="badge"><?= $_SESSION['message_count'] ?></span></a></li>
                     <li><a href="<?= site_url('login/logout'); ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 <?php } else { ?>
                     <li><a href="<?= site_url('register'); ?>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

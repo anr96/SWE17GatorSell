@@ -75,6 +75,7 @@ if (!function_exists('init_session_if_needed')) {
             $ci->session->set_userdata('categoryID', 0);
             $ci->session->set_userdata('query', NULL);
             $ci->session->set_userdata('query_error_msg', NULL);
+            $ci->session->set_userdata('message_count',0);
         }
         if(logged_in()){
             $ci =& get_instance();
