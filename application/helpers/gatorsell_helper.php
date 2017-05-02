@@ -49,22 +49,37 @@ if (!function_exists('must_be_unactivated')) {
         }
     }
 }
-
+if (!function_exists('set_continue_destination')) {
+    function set_continue_destination($continue_url) {
+        $ci =& get_instance();
+        $ci->session->set_userdata('continue_destination', $continue_url);
+    }
+}
+if (!function_exists('set_cancel_destination')) {
+    function set_cancel_destination($cancel_url) {
+        $ci =& get_instance();
+        $ci->session->set_userdata('cancel_destination', $cancel_url);
+    }
+}
 if (!function_exists('update_destinations')) {
     function update_destinations($continue_url,$cancel_url) {
-        $ci = get_instance();
-        $ci->session->set_userdata('continue_destination', $continue_url);
-        $ci->session->set_userdata('cancel_destination', $cancel_url);
+        set_continue_destination($continue_url);
+        set_cancel_destination($cancel_url);
     }
 }
 if (!function_exists('init_session_if_needed')) {
     function init_session_if_needed() {
         if(!isset($_SESSION['continue_destination'])){
-            $ci = get_instance();
+            $ci =& get_instance();
             update_destinations(site_url(), site_url());
             $ci->session->set_userdata('categoryID', 0);
             $ci->session->set_userdata('query', NULL);
             $ci->session->set_userdata('query_error_msg', NULL);
+        }
+        if(logged_in()){
+            $ci =& get_instance();
+            $ci->load->model('messages_model');
+            $ci->session->set_userdata('message_count', $ci->messages_model->count_messages($_SESSION['registered_user']['id']));
         }
     }
 }

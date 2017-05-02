@@ -66,7 +66,7 @@ if (!isset($message)) {
         <div class = "row">
             <div class = "col-md-5"> </div>
             <div class = "col-md-2"> 
-                <a href="<?= site_url("ViewMessages"); ?>" class="btn btn-default btn-block" role="button">Back</a>
+                <a href="<?= site_url("messages"); ?>" class="btn btn-default btn-block" role="button">Back</a>
                 <button type="submit" class="btn btn-success btn-block">Reply</button>
 
             </div>

@@ -5,6 +5,7 @@
         $value = isset($_SESSION['query']) ? "value='{$_SESSION['query']}'" : '';
         ?>
         <input type="text" name="query" class="form-control" placeholder="Search" <?=$value;?>>
+        <button type="submit" class="btn btn-default">Search</button>
     </div>
-    <button type="submit" class="btn btn-default">Search</button>
-    </form>
+    
+</form>

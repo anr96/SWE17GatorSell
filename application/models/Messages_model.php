@@ -7,12 +7,17 @@ class Messages_model extends CI_Model {
         $this->load->database();
     }
 
-    public function get_messages($reciever_id) {
-        $query = $this->db->where('reciever_id', $reciever_id)
+    public function get_messages($receiver_id) {
+        $query = $this->db->where('receiver_id', $receiver_id)
                 ->get('messages_view')
                 ->result_array();
 
         return $query;
+    }
+    
+    public function count_messages($receiver_id){
+        return $this->db->where('receiver_id', $receiver_id)
+                ->count_all_results('messages_view');
     }
 
     public function get_message($id) {
@@ -34,6 +39,13 @@ class Messages_model extends CI_Model {
 
     public function delete_message($id) {
         $this->db->delete('messages', array('id' => $id));
+    }
+    
+    public function validate_ownership($message_id,$receiver_id){
+         return ($this->db->where('receiver_id', $receiver_id)
+                ->where('id',$message_id)
+                ->count_all_results('messages_view') == 1);
+       
     }
 
 }

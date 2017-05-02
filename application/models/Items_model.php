@@ -24,9 +24,11 @@ class Items_model extends CI_Model {
 
     public function get_items($category_id = 0, $like = '', $page = 0, $sortby = 0, $how_many = 10) {
 
-        if($sortby < 0 || $sortby > 2) {$sortby = 0;}
-        $sort = array('id ASC','id DESC','price ASC');
-        if ($category_id){
+        if ($sortby < 0 || $sortby > 2) {
+            $sortby = 0;
+        }
+        $sort = array('id ASC', 'id DESC', 'price ASC');
+        if ($category_id) {
             $this->db->where(array('category_id' => $category_id));
         }
         // if $page is -1, get everything.  Otherwise, limit the results
@@ -68,11 +70,26 @@ class Items_model extends CI_Model {
         return $this->db->insert_id();
     }
 
+    public function get_seller_items($seller_id) {
+        return $this->db->where('seller_id', $seller_id)
+                        ->get('items_view')
+                        ->result_array();
+    }
+
     public function update_photo_id($item_id, $photo_id) {
         $this->db->where('item_id', $item_id)
                 ->set('photo_id', $photo_id)
                 ->update('items');
-        
+    }
+
+    public function delete_item($id) {
+        $this->db->delete('items', array('id' => $id));
+    }
+
+    public function validate_ownership($id, $seller_id) {
+        return ($this->db->where('seller_id', $seller_id)
+                        ->where('id', $id)
+                        ->count_all_results('items') == 1);
     }
 
 }

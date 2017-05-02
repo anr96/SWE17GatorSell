@@ -58,11 +58,27 @@ class Items extends CI_Controller {
             $this->load->model('items_model');
             $item = $_POST;
             $item['photo_id'] = 24;
-            $item['seller_id'] = 6;
+            $item['seller_id'] = $_SESSION['registered_user']['id'];
             $id = $this->items_model->add_item($item);
             $item['id'] = $id;
-            gator_view('Post Confirmation','pages/postconfirmation',array('item' => $item));
+            redirect("items/post_confirm/$id");
         }
+    }
+    public function post_confirm($id){
+        must_be_logged_in();
+        $this->load->model('items_model');
+        $data['item'] = $this->items_model->get_item($id);
+        gator_view('Post Confirmation','pages/postconfirmation',$data);
+    }
+    
+    public function delete($id){
+        must_be_logged_in();
+        $this->load->model('items_model');
+        if(!$this->items_model->validate_ownership($id,$_SESSION['registered_user']['id'])){
+            show_404();
+        }
+        $this->items_model->delete_item($id);
+        redirect('account');        
     }
 
 }

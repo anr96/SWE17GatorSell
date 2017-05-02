@@ -10,12 +10,14 @@ class Messages extends CI_Controller {
 
     public function index() {
         must_be_logged_in();
-        
+        set_continue_destination(current_url());
+        $data['messages'] = $this->messages_model->get_messages($_SESSION['registered_user']['id']);
+        gator_view('View Messages', 'pages/ViewMessages',$data);        
     }
 
     public function view_message($message_id) {
         must_be_logged_in();
-        $message = $this->message_model->get_message($message_id);
+        $message = $this->messages_model->get_message($message_id);
         if($message['receiver_id'] != $_SESSION['registered_user']['id']){
             show_404();
         }
@@ -54,7 +56,17 @@ class Messages extends CI_Controller {
     }
 
     public function message_sent($message_id){
-        $this->session->set_userdata('continue_destination', $_SESSION['cancel_destination']);
-        gator_view('Message Sent', 'pages/Confirmation');
+        must_be_logged_in();
+        $data['message'] = $this->messages_model->get_message($message_id);
+        gator_view('Message Sent', 'pages/Confirmation',$data);
+    }
+    
+    public function delete($message_id){
+        must_be_logged_in();
+        if(!$this->messages_model->validate_ownership($message_id,$_SESSION['registered_user']['id'])){
+            show_404();
+        }
+        $this->messages_model->delete_message($message_id);
+        redirect('messages');
     }
 }
