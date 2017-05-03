@@ -8,28 +8,32 @@ $items = array(
 ?>
 
 <div class="container-fluid min-lr-pad">
-    <div class="jumbotron min-b-margin">
-        <h4>Welcome to Gatorsell!  This website is a proud sponsor of San Franciso State University and with the help of our professor Dr. Petkovic of CSC648.02 class.</h4>
+    <div class="panel panel-heading   min-b-margin" style="background-color: #e6f7ff">
+        <h4 class="text-center">Welcome to Gatorsell! </h4>
+        <h5 class="text-center">Features easy access for all SFSU students to browse and purchase items</h5>
         <a href="<?= site_url('about'); ?>"><div><center>Meet the Developers</center></div></a>
     </div>
-    <div class="jumbotron min-b-margin min-lr-pad" style="background-image: url('<?= base_url('assets/img/students.jpeg') ?>')">
+    <div class="jumbotron min-b-margin min-lr-pad" style="background-image: url('<?= base_url('assets/img/free_background.jpg') ?>')">
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-3 col-xs-6">
+            <div class="col-md-3 col-xs-6 ">
                 <div class="panel panel-default min-lr-margin">
                     <div class="panel-body">
-                        <center><a href="<?= site_url('items'); ?>"><img src="<?= base_url('assets/img/cart-300px.png'); ?>" class="img-responsive"></a></center>
+                
+                        <center><a href="<?= site_url('items'); ?>"><img src="<?= base_url('assets/img/buy_icon.jpg'); ?>" class="img-responsive"></a></center>
+             
                     </div>
                     <div>
                         <a href="<?= site_url('items'); ?>"><div class="btn-primary"><center><b style="font-size: 20px">Buy</b> from SFSU students</center></div></a>
                     </div>
                 </div>
+                
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-3 col-xs-6">
                 <div class="panel panel-default min-lr-margin">
                     <div class="panel-body">
-                        <center><a href="<?= site_url('items/new_item'); ?>"><img src="<?= base_url('assets/img/Dollar-Sign.png'); ?>" class="img-responsive"></a></center>
+                        <center><a href="<?= site_url('items/new_item'); ?>"><img src="<?= base_url('assets/img/sell_icon.jpg'); ?>" class="img-responsive"></a></center>
                     </div>
                     <div>
                         <a href="<?= site_url('items/new_item'); ?>"><div class="btn-primary"><center><b style="font-size:20px">Sell</b> to SFSU students</center></div></a>

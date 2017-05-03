@@ -17,7 +17,7 @@ if (!isset($currentPage))
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
-                
+                <?php $this->load->view('widgets/navbarSearch'); ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="<?= site_url('items/new_item'); ?>"><span class="glyphicon glyphicon-star"></span> Sell Something!</a></li>
@@ -33,7 +33,7 @@ if (!isset($currentPage))
         </div>
         <div class="navbar navbar-inverse text-center">
             <ul class="nav" >
-                <?php $this->load->view('widgets/navbarSearch'); ?>
+                
             </ul>
         </div>
     </div>
