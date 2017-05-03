@@ -34,8 +34,8 @@ if (!isset($messages)) {
                                             <p><strong>Date Sent: </strong><?=$message['date_sent']?></p>
                                         </div>
                                         <div class="col-md-2 min-lr-pad">
-                                            <a href="<?= site_url("messages/view_message/$message[id]")?>" class="btn btn-success btn-block">Read</a>
-                                            <a href="<?= site_url("messages/delete/$message[id]")?>" class="btn btn-danger btn-block">Delete</a>
+                                            <a href="<?= site_url("messages/view_message/$message[id]")?>" class="btn btn-primary btn-block">Read</a>
+                                            <a href="<?= site_url("messages/delete/$message[id]")?>" class="btn btn-default btn-block">Delete</a>
                                         </div>
                                     </div>
                                 </div>
