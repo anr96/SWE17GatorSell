@@ -35,15 +35,20 @@ $("#locations").change(function () {
     }
     
     //TODO: change markers to array, then delete markers instead of insantiating an new map every call
-    map.panTo(uluru);
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 18,
-        center: uluru
-    });
-    marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-    });
+            deleteMarkers();
+       // map.setZoom(18);
+        map.panTo(uluru);
+        //setMapOnAll(null);
+        //marker.setMap(null)
+        //markers = [];
+
+addMarker(uluru);
+
+
+//    marker = new google.maps.Marker({
+//        position: uluru,
+//        map: map
+//    });
 
 });
 
