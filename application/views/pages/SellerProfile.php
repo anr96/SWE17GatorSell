@@ -34,7 +34,6 @@ if (!isset($registered_user)) {
                     </div>
                     <div class="col-sm-3">
                         <h5><a href="<?= site_url('ViewMessages') ?>">View All Messages</a></h5>
-                        <h5><a href="<?= site_url('forgotPwd') ?>">Forgot Password?</a></h5>
                     </div>
                     <p></p> 
                 </div>
@@ -57,9 +56,12 @@ if (!isset($registered_user)) {
                         <p>You have no items posted</p>
                     <?php 
                     } 
+                    
                     foreach ($items as $item) {
+                        
                         ?>
-                        <div class="row">
+                     <div class="row panel" >   
+                        
                             <div class="col-md-1"></div>
                             <div class="col-md-3">
                                 <img src="<?= site_url("thumbnail/$item[photo_id]"); ?>" class="img-responsive">
@@ -73,9 +75,11 @@ if (!isset($registered_user)) {
                             <div class="col-md-2">
                                 <a href="<?= site_url("items/delete/$item[id]") ?>" class="btn btn-danger btn-block">Delete</a>
                             </div>
-                        </div>
-                        <p></p>
+                            
+                        
+                    </div>
                     <?php } ?>
+                        
                 </div>
             </div>
         </div>
