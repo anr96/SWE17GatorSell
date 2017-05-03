@@ -16,7 +16,6 @@ $("#locations").change(function () {
     // alert(this.value);
 
     var uluru;
-
     switch (this.value) {
         case '1': // Caesar chavez, 
             uluru = {lat: 37.7224371, lng: -122.4785310};
@@ -34,6 +33,9 @@ $("#locations").change(function () {
             uluru = {lat: 37.722558, lng: -122.4780799}; //default
             break;
     }
+    
+    //TODO: change markers to array, then delete markers instead of insantiating an new map every call
+    map.panTo(uluru);
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 18,
         center: uluru
