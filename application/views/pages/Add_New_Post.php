@@ -19,7 +19,7 @@ $locations = array(
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <div class="required-field-block">
-                        <input type="name" class="form-control" id="name" name ="name" placeholder="Title" required="true" value="<?= set_value('name');?>">
+                        <input type="name" class="form-control" id="name" name ="name" placeholder="Title" required="true" value="<?= set_value('name'); ?>">
                         <div class="required-icon">
                             <div class="text">*</div>
                         </div>
@@ -30,7 +30,7 @@ $locations = array(
                         <div class="form-group">
                             <label for="price">Price:</label>
                             <div class="required-field-block">
-                                <input type="price" class="form-control" id="price" name ="price" placeholder="$" value="<?=set_value('price');?>">
+                                <input type="price" class="form-control" id="price" name ="price" placeholder="$" value="<?= set_value('price'); ?>">
                                 <div class="required-icon">
                                     <div class="text">*</div>
                                 </div>
@@ -48,7 +48,7 @@ $locations = array(
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea class="form-control" rows="5" id="description" name = "description"><?=set_value('description');?></textarea>
+                    <textarea class="form-control" rows="5" id="description" name = "description"><?= set_value('description'); ?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="photo">Upload 1 Photo:</label>
@@ -68,73 +68,71 @@ $locations = array(
 
                     <script>
 
-//                        var map;
-//                        var marker;
-//                        //var markers = [];
-//
-//                        function initMap() {
-//                            var SFSU = {lat: 37.722558, lng: -122.4780799};
-//                            map = new google.maps.Map(document.getElementById('map'), {
-//                                zoom: 17,
-//                                center: SFSU
-//                            });
-//                            marker = new google.maps.Marker({
-//                                position: SFSU,
-//                                map: map
-//                            });
-//                            //markers.push(marker);
-//                        }
-    var map;
-      var markers = [];
+                        var map;
+                        var markers = [];
+                        var uluru;
 
-      function initMap() {
-        var SFSU = {lat: 37.722558, lng: -122.4780799};
+                        var currentLoc = document.getElementById('locations').value;
+                        //alert (currentLoc);
+                        function initMap() {
+                            switch (currentLoc) {
+                                case '1': // Caesar chavez, 
+                                    uluru = {lat: 37.7224371, lng: -122.4785310};
+                                    break;
+                                case '2'://Thorton, 
+                                    uluru = {lat: 37.723721, lng: -122.476971};
+                                    break;
+                                case '3'://humanities 
+                                    uluru = {lat: 37.722443, lng: -122.480927};
+                                    break;
+                                case '4': //library,
+                                    uluru = {lat: 37.721409, lng: -122.477893};
+                                    break;
+                                default:
+                                    uluru = {lat: 37.722558, lng: -122.4780799}; //default
+                                    break;
+                            }
+                            map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 17,
+                                center: uluru,
+                            });
 
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 17,
-          center: SFSU,
-        });
 
-//        // This event listener will call addMarker() when the map is clicked.
-//        map.addListener('click', function(event) {
-//          addMarker(event.latLng);
-//        });
+                            // Adds a marker at the center of the map.
+                            addMarker(uluru);
+                        }
+                        
+                        // Adds a marker to the map and push to the array.
+                        function addMarker(location) {
+                            var marker = new google.maps.Marker({
+                                position: location,
+                                map: map
+                            });
+                            markers.push(marker);
+                        }
 
-        // Adds a marker at the center of the map.
-        addMarker(SFSU);
-      }
+                        // Sets the map on all markers in the array.
+                        function setMapOnAll(map) {
+                            for (var i = 0; i < markers.length; i++) {
+                                markers[i].setMap(map);
+                            }
+                        }
 
-      // Adds a marker to the map and push to the array.
-      function addMarker(location) {
-        var marker = new google.maps.Marker({
-          position: location,
-          map: map
-        });
-        markers.push(marker);
-      }
+                        // Removes the markers from the map, but keeps them in the array.
+                        function clearMarkers() {
+                            setMapOnAll(null);
+                        }
 
-      // Sets the map on all markers in the array.
-      function setMapOnAll(map) {
-        for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(map);
-        }
-      }
+                        // Shows any markers currently in the array.
+                        function showMarkers() {
+                            setMapOnAll(map);
+                        }
 
-      // Removes the markers from the map, but keeps them in the array.
-      function clearMarkers() {
-        setMapOnAll(null);
-      }
-
-      // Shows any markers currently in the array.
-      function showMarkers() {
-        setMapOnAll(map);
-      }
-
-      // Deletes all markers in the array by removing references to them.
-      function deleteMarkers() {
-        clearMarkers();
-        markers = [];
-      }
+                        // Deletes all markers in the array by removing references to them.
+                        function deleteMarkers() {
+                            clearMarkers();
+                            markers = [];
+                        }
 
                     </script>
 
@@ -150,7 +148,7 @@ $locations = array(
         <div class = "row">
             <div class = "col-md-5"> </div>
             <div class = "col-md-1"> 
-                <a href="<?php echo $_SESSION['cancel_destination'];  ?>" class="btn btn-danger btn-block" role="button">Cancel</a>
+                <a href="<?php echo $_SESSION['cancel_destination']; ?>" class="btn btn-danger btn-block" role="button">Cancel</a>
             </div>
             <div class = "col-md-1"> 
 
