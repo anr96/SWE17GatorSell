@@ -1,17 +1,11 @@
-<form id="nbs" class="navbar-form navbar-left" method="get" action="<?= site_url('items')."/$selected";?>">
+<form id="nbs" class="navbar-form" method="post" action="<?= site_url('items/query')?>">
     <div class="form-group">
         <?php 
-        categories_select('All','id="nbs_cat_select" class = "form-control" onchange="chgNBSAction()"',$selected);
-        $value = isset($_GET['query']) ? 'value = "'. htmlentities($_GET['query']) .'"' : '';
+        categories_select('All','class="form-control" name="categoryID"',$_SESSION['categoryID']);
+        $value = isset($_SESSION['query']) ? "value='{$_SESSION['query']}'" : '';
         ?>
         <input type="text" name="query" class="form-control" placeholder="Search" <?=$value;?>>
+        <button type="submit" class="btn btn-default">Search</button>
     </div>
-    <button type="submit" class="btn btn-default">Search</button>
-</form>
-<script>
-function chgNBSAction(){
-    cat = document.getElementById('nbs_cat_select').value
-    document.getElementById('nbs').action = "<?= site_url('items');?>/" + cat;
-}
-</script>
     
+</form>

@@ -1,11 +1,13 @@
 
 <?php
+if(!isset($item)){
     $item = array(
-        "name" => "Camera",
-        "photo" => 32,
-        "description" => "This is a camera!",
-        "price" => 12.95
+        "name" => "Harry Potter",
+        "photo_id" => 32,
+        "long_description" => "This is a book!",
+        "price" => 5.99
     );
+}
 ?>
 <div class="containter-fluid">
     <div class="text-center">
@@ -16,25 +18,20 @@
 
     <div class = "row">
         <div class = "col-md-3 min-lr-pad">
-            <?php
-            $path = site_url("dbimg/{$item['photo']}");
-            echo "<img src='$path' class='img-responsive'>";
-            ?>
+            <img src="<?=site_url("dbimg/$item[photo_id]")?>" class="img-responsive">
         </div>
         <div class = "col-md-7">
-            <?php
-            echo "<h2><strong>Item Name: </strong>{$item['name']}</h2>";
-            echo "<h3><strong>Description </strong></h3><br>";
-            echo "<p>{$item['description']}</p>";
-            ?>
+            <h2><strong>Item Name: </strong><?=$item['name']?></h2>
+            <h3><strong>Description </strong></h3><br>
+            <p><?=$item['long_description']?></p>
         </div>
         <div class = "col-md-2">
             <h3>Price: $<?= number_format($item['price'], 2); ?></h3>
         </div>
     </div>
 
-    <div class="text-right">
-        <button type="button" class="btn btn-outline-primary">Click here to edit</button>
+    <div class="text-center">
+        <a href="<?= $_SESSION['cancel_destination'] ?>" class="btn btn-success">Continue</a>
     </div>
 </div>
 

@@ -13,6 +13,6 @@ class Locations extends CI_Model {
 
         return $query;
     }
-
+    
 
 }

@@ -11,11 +11,13 @@
                     <div class="alert alert-danger text-center">
                         <strong>Invalid e-mail or password</strong>
                     </div>
-                    <?php }?>
+                    <?php }
+                    echo validation_errors();
+                    ?>
                     <form method="post" action="<?= site_url('login'); ?>">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-3" style="text-align: right">
+                                <div class="col-md-3" >
                                     <label for="email">Email: </label> 
                                 </div>
                                 <div class="col-md-6">
@@ -27,24 +29,25 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-3" style="text-align: right">
+                                <div class="col-md-3" >
                                     <label for="password">Password: </label> 
                                 </div>
                                 <div class="col-md-6">
                                     <input type="password" id="password" name="password" class="form-control">
+                                    <a href="<?= site_url('forgotPwd'); ?>" style='color:grey' class="pull-right">forgot password?</a>
                                 </div>
                                 <div class="col-md-3">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group form-inline text-center">
-                            <button type="submit" name="submit" value="submit" class="btn btn-success" >Login</button>
+                            <button type="submit" name="submit" value="submit" class="btn btn-primary" >Login</button>
                         </div>
                     </form>
                 </div>
                 <div class="panel-footer text-center">
-                    <a href="<?= site_url('Register'); ?>" class="btn btn-default" role="button">Register</a>
-                    <a href="<?= site_url('forgotPwd'); ?>" class="btn btn-default" role="button">Forgot password?</a>
+                    <p>Don't have an account? <a href="<?= site_url('Register'); ?>">Sign up</a></p>
+                    
                 </div>
 
             </div>
