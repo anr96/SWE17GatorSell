@@ -74,7 +74,7 @@ class Items extends CI_Controller {
         $this->load->library('upload');
 
         if (!$this->upload->do_upload('photo')) {
-            return 22;
+            return 0;
         } else {
             $img = $this->upload->data();
 
