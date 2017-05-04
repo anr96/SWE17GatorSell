@@ -3,6 +3,9 @@
 class Photos extends CI_Controller {
 
     public function view($id) {
+        if($id == 0){
+            redirect(base_url('assets/img/no_image_available.png'));
+        }
         // load the photo indexed by id
         $this->load->model('photos_model');
         $photo_data = $this->photos_model->get_photo($id);
@@ -20,6 +23,9 @@ class Photos extends CI_Controller {
     }
 
     public function thumbnail($id) {
+        if($id == 0){
+            redirect(base_url('assets/img/no_image_thumbnail.jpg'));
+        }
         // load the thumbnail indexed by id
         $this->load->model('photos_model');
         $photo_data = $this->photos_model->get_thumbnail($id);
