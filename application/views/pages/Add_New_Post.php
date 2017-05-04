@@ -7,7 +7,7 @@ $locations = array(
 );
 ?>
 <div class = "container-fluid">
-    <form method="post" id="AddNewPost" action ="<?= site_url('items/new_item') ?>"> 
+    <form method="post" id="AddNewPost" action ="<?= site_url('items/new_item') ?>" enctype="multipart/form-data"> 
         <div class = "row">
             <center><h1> Sell Item </h></center>
         </div>
@@ -52,8 +52,8 @@ $locations = array(
                 </div>
                 <div class="form-group">
                     <label for="photo">Upload 1 Photo:</label>
-                    <input type="file" class="form-control-file" id="photo"  name = "photo">
-                    <small id="fileHelp" class="form-text ">File size must be under 2MB.</small>
+                    <input type="file" class="form-control-file" id="photo"  name = "photo" accept=".jpg,.jpeg,.gif,.png">
+                    <small id="fileHelp" class="form-text ">File size must be under 2MB and a jpg, jpeg, gif, or png file type</small>
                 </div>
             </div>
             <div class = "col-md-5">
