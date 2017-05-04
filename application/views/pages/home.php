@@ -13,7 +13,7 @@ $items = array(
         <h5 class="text-center">Features easy access for all SFSU students to browse and purchase items</h5>
         <a href="<?= site_url('about'); ?>"><div><center>Meet the Developers</center></div></a>
     </div>
-    <div class="jumbotron min-b-margin min-lr-pad" style="background-image: url('<?= base_url('assets/img/free_background.jpg') ?>')">
+    <div class="jumbotron min-b-margin min-lr-pad" style="background-color: #05052d">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-3 col-xs-6 ">
