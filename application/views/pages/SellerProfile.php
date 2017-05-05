@@ -33,7 +33,7 @@ if (!isset($registered_user)) {
                         <?php echo "<label>Phone Number:</label> $registered_user[phone]"; ?>
                     </div>
                     <div class="col-sm-3">
-                        <h5><a href="<?= site_url('ViewMessages') ?>">View All Messages</a></h5>
+                        <h5><a href="<?= site_url('messages') ?>">View All Messages</a></h5>
                     </div>
                     <p></p> 
                 </div>
