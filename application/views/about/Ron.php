@@ -23,8 +23,9 @@
                 <p>There is enormous enthusiasm for machine learning in the computer science industry, but why not focus, instead, on the significant potential of maximizing the seven billion inhabitants of our planet who are already capable of rational thought?</p>
                 <br />
                 <h4>The Complete Unification of Physics in Classical Mechanics</h4>
-                <p>I'm close. I am really really close!  Prior to the realization that the Earth was not the center of the solar system, ridiculously complex models of celestial mechanics were constructed to predict observations in the night sky.  These models not only failed to predict those observations with any real accuracy, but they hindered any possible comprehension as to why it worked.  When Copernicus put the sun at the center of the solar system, everything made sense.  Qualitative ideas like gravity suddenly began to add up quantitatively in ways that where previously unfathomable. </p>
-                <p>I am about to metaphorically put the sun back at the center of the solar system. </p>
+                <p>I'm close. I am really really close!</p>
+                <p>Prior to the realization that the Earth was not the center of the solar system, ridiculously complex models of celestial mechanics were constructed to predict observations in the night sky.  These models not only failed to predict those observations with any real accuracy, but they hindered any possible comprehension as to why it worked.  When Copernicus put the sun at the center of the solar system, everything made sense.  Qualitative ideas like gravity suddenly began to add up quantitatively in ways that where previously unfathomable. </p>
+                <p>Sometimes, all that is needed is to reconsider one simple idea, and in this case it is an idea that was so simple that it was an easy conclusion to consider it resolved and worthy of no further consideration.  I am about to metaphorically put the sun back at the center of the solar system. </p>
                 <br /><br />
 
         </div>
