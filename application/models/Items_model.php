@@ -77,8 +77,8 @@ class Items_model extends CI_Model {
     }
 
     public function update_photo_id($item_id, $photo_id) {
-        $this->db->where('item_id', $item_id)
-                ->set('photo_id', $photo_id)
+        $this->db->where('id', $item_id)
+                ->set('photo', $photo_id)
                 ->update('items');
     }
 

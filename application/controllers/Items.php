@@ -54,17 +54,19 @@ class Items extends CI_Controller {
         $this->form_validation->set_rules('category_id', 'Category', 'required|greater_than[0]');
         $this->form_validation->set_rules('location_id', 'Location', 'required|greater_than[0]');
 
+
         if ($this->form_validation->run() == FALSE) {
             gator_view('Add New Item', 'pages/Add_New_Post');
         } else {
             $this->load->model('items_model');
             $item = $_POST;
-            $item['photo_id'] = 24;
+            $item['photo_id'] = 0;
             $item['seller_id'] = $_SESSION['registered_user']['id'];
-            $id = $this->items_model->add_item($item);
+            $item_id = $this->items_model->add_item($item);
+            $photo_id = $this->upload_photo($item_id);
+            $this->items_model->update_photo_id($item_id,$photo_id);
 
-
-            redirect("items/post_confirm/$id");
+            redirect("items/post_confirm/$item_id");
         }
     }
 
@@ -72,8 +74,7 @@ class Items extends CI_Controller {
         $this->load->library('upload');
 
         if (!$this->upload->do_upload('photo')) {
-            return $this->upload->display_errors();
-            
+            return 0;
         } else {
             $img = $this->upload->data();
 
@@ -92,9 +93,8 @@ class Items extends CI_Controller {
             $photo_id = $this->photos_model->upload_photo($item_id, $img['full_path'], $img['full_path'] . ".jpg", $img['image_type']);
             unlink($img['full_path']);
             unlink($img['full_path'] . ".jpg");
-            
-            return $photo_id;
 
+            return $photo_id;
         }
     }
 

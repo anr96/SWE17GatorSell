@@ -1,6 +1,6 @@
     </div> <!--close out the container-->
 </div> <!--close out the contents class--> 
-<div class="container min-lr-pad">
+<div class="container min-lr-pad footer-text">
     <?php $this->load->view('widgets/terms_and_copyright'); ?>
 </div>
 
