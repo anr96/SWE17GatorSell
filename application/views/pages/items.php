@@ -1,4 +1,9 @@
 <div class="container-fluid">
+    <?php if ($_SESSION['invalid_query']): ?>
+        <div class="alert alert-danger text-center min-b-margin">
+            <strong>Invalid Search parameters. Search may only contain letters, numbers, and spaces. Displaying everything from your selected category</strong>
+        </div>
+    <?php endif; ?>
     <h1 class="text-center">Items For Sale</h1>
     <div class="row">
         <div class="col-md-4"></div> 

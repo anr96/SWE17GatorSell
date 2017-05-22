@@ -7,7 +7,7 @@ class Items extends CI_Controller {
 
         $this->load->model('items_model');
 
-        $query = isset($_SESSION['query']) ? $_SESSION['query'] : '';
+        $query = $_SESSION['invalid_query'] ? '' : $_SESSION['query'];
         $data['items'] = $this->items_model->get_items($_SESSION['categoryID'], $query, $page, $sortby);
         $data['total'] = $this->items_model->items_count($_SESSION['categoryID'], $query);
         $data['page'] = $page;
@@ -21,15 +21,13 @@ class Items extends CI_Controller {
     public function query() {
         can_be_any_logged_in_state();
         $this->form_validation->set_rules('categoryID', 'Category', 'required|is_natural');
-        $this->form_validation->set_rules('query', 'Query', 'trim|alpha_numeric_spaces');
 
-        if ($this->form_validation->run() == FALSE) {
-            redirect('items');
-        } else {
-            $this->session->set_userdata('categoryID', $this->input->post('categoryID'));
-            $this->session->set_userdata('query', $this->input->post('query'));
-            redirect('items');
-        }
+        $categoryID = $this->form_validation->run('categoryID') == FALSE ? 0 : $this->input->post('categoryID');
+        $this->session->set_userdata('categoryID', $categoryID);
+        $this->form_validation->set_rules('query', 'Query', 'trim|alpha_numeric_spaces');
+        $this->session->set_userdata('invalid_query', ($this->form_validation->run('query') == FALSE));
+        $this->session->set_userdata('query', $this->input->post('query'));
+        redirect('items');
     }
 
     public function item($id) {

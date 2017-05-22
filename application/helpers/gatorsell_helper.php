@@ -69,13 +69,14 @@ if (!function_exists('update_destinations')) {
 }
 if (!function_exists('init_session_if_needed')) {
     function init_session_if_needed() {
-        if(!isset($_SESSION['continue_destination'])){
+        if(!isset($_SESSION['invalid_query'])){
             $ci =& get_instance();
             update_destinations(site_url(), site_url());
             $ci->session->set_userdata('categoryID', 0);
-            $ci->session->set_userdata('query', NULL);
+            $ci->session->set_userdata('query', '');
             $ci->session->set_userdata('query_error_msg', NULL);
             $ci->session->set_userdata('message_count',0);
+            $ci->session->set_userdata('invalid_query',FALSE);
         }
         if(logged_in()){
             $ci =& get_instance();
