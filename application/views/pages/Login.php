@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <input type="password" id="password" name="password" class="form-control">
-                                    <a href="<?= site_url('pages/forgotPwd'); ?>" style='color:grey' class="pull-right">forgot password?</a>
+                                    <a href="<?= site_url('login/forgot_password'); ?>" style='color:grey' class="pull-right">forgot password?</a>
                                 </div>
                                 <div class="col-md-3">
                                 </div>

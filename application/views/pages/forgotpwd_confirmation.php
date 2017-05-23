@@ -7,8 +7,8 @@
     </div>
     
     
-    <div class ="text-right">
-        <a href="continue_destination; ?>"<button type="continue" class="btn btn-danger">Cancel</button> </a>
+    <div class ="text-center">
+        <a href="<?= $_SESSION['continue_destination'] ?>" class="btn btn-success">Continue</a>
                    
     </div>
 </div>

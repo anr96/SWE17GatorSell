@@ -24,6 +24,23 @@ class Login extends CI_Controller {
             }
         }
     }
+    public function forgot_password(){
+        must_not_be_logged_in();
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|regex_match[/.*sfsu.edu/]|strtolower',array(
+            'regex_match' => 'Not a valid SFSU email address'
+        ));
+         if ($this->form_validation->run() == FALSE) {
+            gator_view('Login', 'pages/forgotPwd');
+        } else {
+            redirect('login/forgot_password_confirmation');
+        }
+       
+    }
+    
+    public function forgot_password_confirmation() {
+        must_not_be_logged_in();
+        gator_view("Forgot Password Confirmation", 'pages/forgotpwd_confirmation');        
+    }
 
     public function logout() {
         $this->session->unset_userdata('registered_user');
