@@ -1,16 +1,18 @@
 <?php
 
+//testing stuff
 class Upload extends CI_Controller {
-
+    //testing stuff
     public function __construct() {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
     }
-
+    //testing stuff
     public function index() {
         $this->load->view('upload_test/upload_form', array('error' => ' '));
     }
 
+    //testing stuff
     public function do_upload() {
         $this->load->library('upload');
         

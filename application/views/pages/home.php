@@ -1,10 +1,12 @@
 <?php
-$items = array(
-    array('id' => 15, 'name' => 'Harry Potter The Tales of Beetle and Bard', 'price' => 5.99, 'photo_id' => 17),
-    array('id' => 16, 'name' => 'Modern Programming Languages', 'price' => 9.99, 'photo_id' => 18),
-    array('id' => 17, 'name' => 'Understanding OOP with Java', 'price' => 9.99, 'photo_id' => 19),
-    array('id' => 18, 'name' => 'Introduction to Java Programming', 'price' => 9.99, 'photo_id' => 20)
-);
+if (!isset($items)) {
+    $items = array(
+        array('id' => 15, 'name' => 'Harry Potter The Tales of Beetle and Bard', 'price' => 5.99, 'photo_id' => 17),
+        array('id' => 16, 'name' => 'Modern Programming Languages', 'price' => 9.99, 'photo_id' => 18),
+        array('id' => 17, 'name' => 'Understanding OOP with Java', 'price' => 9.99, 'photo_id' => 19),
+        array('id' => 18, 'name' => 'Introduction to Java Programming', 'price' => 9.99, 'photo_id' => 20)
+    );
+}
 ?>
 
 <div class="container-fluid min-lr-pad">
@@ -19,15 +21,15 @@ $items = array(
             <div class="col-md-3 col-xs-6 ">
                 <div class="panel panel-default min-lr-margin">
                     <div class="panel-body">
-                
+
                         <center><a href="<?= site_url('items'); ?>"><img src="<?= base_url('assets/img/buy_icon.jpg'); ?>" class="img-responsive"></a></center>
-             
+
                     </div>
                     <div>
                         <a href="<?= site_url('items'); ?>"><div class="btn-primary"><center><b style="font-size: 20px">Buy</b> from SFSU students</center></div></a>
                     </div>
                 </div>
-                
+
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-3 col-xs-6">

@@ -2,6 +2,8 @@
 
 class Photos extends CI_Controller {
 
+    // displays a photo. called with /dbimg/$id
+    // $id is an integer photo id
     public function view($id) {
         if($id == 0){
             redirect(base_url('assets/img/no_image_available.png'));
@@ -21,7 +23,9 @@ class Photos extends CI_Controller {
         // let the view do what it does - send an image to the client
         $this->load->view('templates/photo', $data);
     }
-
+    
+    // displays a thumbnail. called with /thumbnail/$id
+    // $id is an integer photo id
     public function thumbnail($id) {
         if($id == 0){
             redirect(base_url('assets/img/no_image_thumbnail.jpg'));

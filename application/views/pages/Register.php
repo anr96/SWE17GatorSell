@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <p><input type="checkbox" name="agree_to_terms" autocomplete="off" value="1">
-                        I agree to the <a href="<?= site_url('terms'); ?>"> Terms & Conditions</a></p>
+                        I agree to the <a href="<?= site_url('pages/terms'); ?>"> Terms & Conditions</a></p>
                 </div>
 
                 <div class="form-group">

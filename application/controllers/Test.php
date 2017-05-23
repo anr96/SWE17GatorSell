@@ -2,6 +2,7 @@
 
 class Test extends CI_Controller {
 
+    //testing stuff
     public function view() {
         $this->load->model('locations');
         

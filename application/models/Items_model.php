@@ -46,6 +46,13 @@ class Items_model extends CI_Model {
 
         return $this->db->get('items_view')->result_array();
     }
+    
+    public function get_new_items() {
+        return $this->db->where('photo_id !=', 0)
+                ->order_by('id DESC')
+                ->limit(5)
+                ->get('items_view')->result_array();
+    }
 
 //    public function get_items($category_id,$page = -1) {
 //        return $this->db->get_where('items_briefdescription_view', array('category_id' => $category_id))->result();

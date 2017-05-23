@@ -1,6 +1,8 @@
 <?php
 class Register extends CI_Controller {
 
+    // displays the registration page and validates entries.  called with /register
+    // redirects to activation page on success
     public function index() {
         must_not_be_logged_in();
         
@@ -24,6 +26,8 @@ class Register extends CI_Controller {
         }
     }
     
+    // displays activation page and validates entry.  called with /register/activate
+    // redirects to the continue destination session variable.
     public function activate() {
         must_be_unactivated();
         $this->form_validation->set_rules('code', 'Confirmation Code', 'required|regex_match[/the a-team/]');

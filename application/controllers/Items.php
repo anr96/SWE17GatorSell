@@ -2,6 +2,10 @@
 
 class Items extends CI_Controller {
 
+    // displays all items filtered by search criteria
+    // called with gatorsell.com/items/$page/$sortby
+    // $page is an integer for the page of data to view
+    // $sortby is an integer specifying 0= by date accending, 1=date decsending 2=price
     public function view($page = 0, $sortby = 0) {
         can_be_any_logged_in_state();
 
@@ -18,6 +22,8 @@ class Items extends CI_Controller {
         gator_view('Items For Sale', 'pages/items', $data);
     }
 
+    // handles the search bar function.  called with /items/query in the action parameter of the form
+    // sets session variables accordingly then redirects to view()
     public function query() {
         can_be_any_logged_in_state();
         $this->form_validation->set_rules('categoryID', 'Category', 'required|is_natural');
@@ -30,6 +36,8 @@ class Items extends CI_Controller {
         redirect('items');
     }
 
+    // displays an individual item. called with /items/$id
+    // $id is the integer id number of the item listed
     public function item($id) {
         can_be_any_logged_in_state();
         // load the model and use its get_item function
@@ -44,6 +52,7 @@ class Items extends CI_Controller {
         gator_view($data['item']['name'], 'prototype/item', $data);
     }
 
+    // adds a new item to be sold. called with items/new_item
     public function new_item() {
         must_be_logged_in();
 
@@ -73,6 +82,10 @@ class Items extends CI_Controller {
         }
     }
 
+    //helper function to create a thumbnail for the uploaded image
+    // and to insert it into the database
+    // $item_id is the integer id of the item the photo is associated with
+    // returns the integer photo_id of the new photo database entry or zero if none
     private function upload_photo($item_id) {
         $this->load->library('upload');
 
@@ -108,6 +121,8 @@ class Items extends CI_Controller {
         }
     }
 
+    // displays the new item confirmation page. called with /items/post_confirm/$id
+    // $id is the item id of the new item
     public function post_confirm($id) {
         must_be_logged_in();
         $this->load->model('items_model');
@@ -115,6 +130,8 @@ class Items extends CI_Controller {
         gator_view('Post Confirmation', 'pages/postconfirmation', $data);
     }
 
+    // deletes an item from the database.  called with /items/delete/$id
+    // $id is the item id of the item to be deleted
     public function delete($id) {
         must_be_logged_in();
         $this->load->model('items_model');

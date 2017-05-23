@@ -8,7 +8,9 @@ class Messages_model extends CI_Model {
     }
 
     public function get_messages($receiver_id) {
+        $sortby = array('id ASC', 'id DESC', 'item_id ASC','sender_id ASC')[$_SESSION['message_sortby']];
         $query = $this->db->where('receiver_id', $receiver_id)
+                ->order_by($sortby)
                 ->get('messages_view')
                 ->result_array();
 
