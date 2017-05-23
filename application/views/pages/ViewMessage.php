@@ -11,15 +11,11 @@ if (!isset($message)) {
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-2">
-            <img src="<?= site_url('thumbnail/32'); ?>" class="img-responsive">
-            <?php
-            echo "";
-            $path = site_url("thumbnail/32");
-            ?>
+            <img src="<?= site_url("thumbnail/$message[photo_id]"); ?>" class="img-responsive">
         </div>
         <div class="col-md-3">
             <?php
-            echo "<h4><strong>Item: </strong>$message[item_name]</h4>";
+            echo "<h4><strong>Item: </strong>".htmlentities($message['item_name'])."</h4>";
             echo "<h4><strong>Price: $</strong>$message[price]</h4>";
             echo "<h4><strong>Catageory: </strong>$message[category_name]</h4>";
             echo "<h4><strong>Safe Meeting Location: </strong>$message[location_name]</h4>";

@@ -64,10 +64,10 @@ if (!isset($registered_user)) {
                         
                             <div class="col-md-1"></div>
                             <div class="col-md-3">
-                                <img src="<?= site_url("thumbnail/$item[photo_id]"); ?>" class="img-responsive">
+                                <a href="<?= site_url("item/$item[id]") ?>"><img src="<?= site_url("thumbnail/$item[photo_id]"); ?>" class="img-responsive"></a>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Item: </strong><?=$item['name']?></p>
+                                <p><strong>Item: </strong><?= htmlentities($item['name'])?></p>
                                 <p><strong>Price: $</strong><?=$item['price']?></p>
                                 <p><strong>Category: </strong><?=$item['category_name']?></p>
                                 <p><strong>Safe Meeting: </strong><?=$item['location_name']?></p>

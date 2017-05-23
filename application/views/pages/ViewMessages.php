@@ -42,11 +42,11 @@ $sortby = $_SESSION['message_sortby'];
                                 <div class = "container-fluid">
                                     <div class = "row">
                                         <div class="col-md-2 min-lr-pad">
-                                            <img src="<?= site_url("thumbnail/$message[photo_id]") ?>" class="image-responsive">
+                                            <a href="<?= site_url("messages/view_message/$message[id]") ?>"><img src="<?= site_url("thumbnail/$message[photo_id]") ?>" class="image-responsive"></a>
                                         </div>
                                         <div class="col-md-8">
-                                            <p><strong>Item: </strong><?= $message['item_name'] ?></p>
-                                            <p><strong>Sent by: </strong><?= $message['sender_name'] ?></p>
+                                            <p><strong>Item: </strong><?= htmlentities($message['item_name']) ?></p>
+                                            <p><strong>Sent by: </strong><?= htmlentities($message['sender_name']) ?></p>
                                             <p><strong>Date Sent: </strong><?= $message['date_sent'] ?></p>
                                         </div>
                                         <div class="col-md-2 min-lr-pad">
