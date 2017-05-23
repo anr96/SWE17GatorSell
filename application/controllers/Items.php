@@ -59,8 +59,12 @@ class Items extends CI_Controller {
         // set up the rules to validate the form data
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('price', 'Price', 'required|greater_than[0]');
-        $this->form_validation->set_rules('category_id', 'Category', 'required|greater_than[0]');
-        $this->form_validation->set_rules('location_id', 'Location', 'required|greater_than[0]');
+        $this->form_validation->set_rules('category_id', 'Category', 'required|greater_than[0]',array(
+            'greater_than' => "You must choose a category"
+        ));
+        $this->form_validation->set_rules('location_id', 'Location', 'required|greater_than[0]',array(
+            'greater_than' => "You must choose a location"
+        ));
 
         // execute the form validation
         if ($this->form_validation->run() == FALSE) {
