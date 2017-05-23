@@ -7,7 +7,7 @@ class Items extends CI_Controller {
 
         $this->load->model('items_model');
 
-        $query = isset($_SESSION['query']) ? $_SESSION['query'] : '';
+        $query = $_SESSION['invalid_query'] ? '' : $_SESSION['query'];
         $data['items'] = $this->items_model->get_items($_SESSION['categoryID'], $query, $page, $sortby);
         $data['total'] = $this->items_model->items_count($_SESSION['categoryID'], $query);
         $data['page'] = $page;
@@ -21,15 +21,13 @@ class Items extends CI_Controller {
     public function query() {
         can_be_any_logged_in_state();
         $this->form_validation->set_rules('categoryID', 'Category', 'required|is_natural');
-        $this->form_validation->set_rules('query', 'Query', 'trim|alpha_numeric_spaces');
 
-        if ($this->form_validation->run() == FALSE) {
-            redirect('items');
-        } else {
-            $this->session->set_userdata('categoryID', $this->input->post('categoryID'));
-            $this->session->set_userdata('query', $this->input->post('query'));
-            redirect('items');
-        }
+        $categoryID = $this->form_validation->run('categoryID') == FALSE ? 0 : $this->input->post('categoryID');
+        $this->session->set_userdata('categoryID', $categoryID);
+        $this->form_validation->set_rules('query', 'Query', 'trim|alpha_numeric_spaces');
+        $this->session->set_userdata('invalid_query', ($this->form_validation->run('query') == FALSE));
+        $this->session->set_userdata('query', $this->input->post('query'));
+        redirect('items');
     }
 
     public function item($id) {
@@ -49,20 +47,25 @@ class Items extends CI_Controller {
     public function new_item() {
         must_be_logged_in();
 
+        // set up the rules to validate the form data
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('price', 'Price', 'required|greater_than[0]');
         $this->form_validation->set_rules('category_id', 'Category', 'required|greater_than[0]');
         $this->form_validation->set_rules('location_id', 'Location', 'required|greater_than[0]');
 
-
+        // execute the form validation
         if ($this->form_validation->run() == FALSE) {
+            // form is incorrect or hasn't been run yet so show the add item page
             gator_view('Add New Item', 'pages/Add_New_Post');
         } else {
+            // data is good.  add new item to the database
             $this->load->model('items_model');
             $item = $_POST;
             $item['photo_id'] = 0;
             $item['seller_id'] = $_SESSION['registered_user']['id'];
             $item_id = $this->items_model->add_item($item);
+            
+            //upload photo if there is one
             $photo_id = $this->upload_photo($item_id);
             $this->items_model->update_photo_id($item_id,$photo_id);
 
@@ -73,11 +76,13 @@ class Items extends CI_Controller {
     private function upload_photo($item_id) {
         $this->load->library('upload');
 
+        // is there a file uploaded?
         if (!$this->upload->do_upload('photo')) {
             return 0;
         } else {
             $img = $this->upload->data();
-
+            
+            // set up the image manipulation api
             $config['image_library'] = 'gd2';
             $config['source_image'] = $img['full_path'];
             $config['create_thumb'] = false;
@@ -87,10 +92,15 @@ class Items extends CI_Controller {
             $config['width'] = 100;
             $config['height'] = 100;
 
+            // create the thumbnail
             $this->load->library('image_lib', $config);
             $this->image_lib->resize();
+            
+            // upload the blob to the database
             $this->load->model('photos_model');
             $photo_id = $this->photos_model->upload_photo($item_id, $img['full_path'], $img['full_path'] . ".jpg", $img['image_type']);
+            
+            // delete the temporary files
             unlink($img['full_path']);
             unlink($img['full_path'] . ".jpg");
 
