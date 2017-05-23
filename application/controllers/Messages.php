@@ -34,6 +34,16 @@ class Messages extends CI_Controller {
             redirect("messages/message_sent/$message_id");
         }        
     }
+    
+    public function sortby(){
+        $this->form_validation->set_rules('sortby', 'Sortby', 'required|integer|greater_than_equal_to[0]|less_than_equal_to[3]');
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_userdata('message_sortby', 0);
+        } else {
+            $this->session->set_userdata('message_sortby', $this->input->post('sortby'));
+        }
+        redirect('messages');
+    }
 
     public function message_seller($item_id = 0) {
         must_be_logged_in();
