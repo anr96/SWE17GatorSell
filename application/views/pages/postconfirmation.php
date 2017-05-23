@@ -21,9 +21,9 @@ if(!isset($item)){
             <img src="<?=site_url("dbimg/$item[photo_id]")?>" class="img-responsive">
         </div>
         <div class = "col-md-7">
-            <h2><strong>Item Name: </strong><?=$item['name']?></h2>
+            <h2><strong>Item Name: </strong><?= htmlentities($item['name'])?></h2>
             <h3><strong>Description </strong></h3><br>
-            <p><?=$item['long_description']?></p>
+            <pre><?= htmlentities($item['long_description'])?></pre>
         </div>
         <div class = "col-md-2">
             <h3>Price: $<?= number_format($item['price'], 2); ?></h3>

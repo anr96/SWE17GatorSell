@@ -7,11 +7,9 @@
             ?>
         </div>
         <div class = "col-md-7">
-            <?php
-            echo "<h4><strong>Item name: </strong>{$item['name']}</h4>";
-            echo "<h4><strong>Description </strong></h4><br>";
-            echo "<p>{$item['long_description']}</p>";
-            ?>
+            <h2><strong>Item Name: </strong><?= htmlentities($item['name'])?></h2>
+            <h3><strong>Description </strong></h3>
+            <pre><?= htmlentities($item['long_description'])?></pre>
         </div>
         <div class = "col-md-2">
             <h3>Price: $<?= number_format($item['price'], 2); ?></h3>
