@@ -2,6 +2,7 @@
 
 class About extends CI_Controller {
 
+    // displays the about pages or the main about page
     public function view($page = 'about') {
         if (!file_exists(APPPATH . 'views/about/' . $page . '.php')) {
             // Whoops, we don't have a page for that!

@@ -2,6 +2,7 @@
 
 class Register extends CI_Controller {
 
+    // unused.  from testing phase of development
     public function do_register() {
 
         $this->load->model('registered_user_accounts');
@@ -23,7 +24,7 @@ class Register extends CI_Controller {
             redirect('register/validate_account');
         }
     }
-    
+    // unused.  from testing phase of development
     public function validate_account() {
         
     }

@@ -3,6 +3,9 @@
 class Login extends CI_Controller {
     public $registered_user;
 
+    // displays the login page and validates entries.  called with /login
+    // if the account has not been activated, it redirects to the acctivation form
+    // otherwise, it continues to the next destination
     public function index() {
         must_not_be_logged_in();
         
@@ -24,6 +27,8 @@ class Login extends CI_Controller {
             }
         }
     }
+    // displays the forgot password page.  called with /login/forgot_password
+    // validates form entry for a valid SFSU email. on success, displays confirmation page
     public function forgot_password(){
         must_not_be_logged_in();
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|regex_match[/.*sfsu.edu/]|strtolower',array(
@@ -37,16 +42,20 @@ class Login extends CI_Controller {
        
     }
     
+    // displays confirmation page. called with login/forgot_password_confirmation
     public function forgot_password_confirmation() {
         must_not_be_logged_in();
         gator_view("Forgot Password Confirmation", 'pages/forgotpwd_confirmation');        
     }
 
+    // logs out the user.  called with /login/logout
     public function logout() {
         $this->session->unset_userdata('registered_user');
         redirect($_SESSION['cancel_destination']);
     }
     
+    // helper callback funtion to validate an email and password
+    // used by the index function
     public function validate_user($password) {
         $this->load->model('registered_user_accounts');
         $email = $this->input->post('email');
